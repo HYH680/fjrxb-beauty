@@ -1,0 +1,148 @@
+# AI 超市旁路（与生产对齐用同一文件）
+# 本机无 Docker 时用：npm run integrations:start
+#
+# 分轨启动（profile）：
+#   ① n8n     docker compose -f docker-compose.integrations.yml --profile n8n up -d
+#   ② 重服务  docker compose -f docker-compose.integrations.yml --profile heavy up -d
+#   ④ 自建媒体  docker compose -f docker-compose.integrations.yml --profile selfhost up -d
+#
+# 对应 .env 开关：FEATURE_N8N / FEATURE_LOCAL_WHISPER / FEATURE_DOCLING / FEATURE_LOCAL_LLM
+# 自建 Suno / MJ：SUNO_BASE_URL / MIDJOURNEY_PROXY_BASE（Cookie、Discord Token 只放容器）
+
+services:
+  redis:
+    image: redis:7-alpine
+    container_name: ai-supermarket-redis
+    restart: unless-stopped
+    profiles: ["n8n", "full"]
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+
+  n8n:
+    image: n8nio/n8n:latest
+    container_name: ai-supermarket-n8n
+    restart: unless-stopped
+    profiles: ["n8n", "full"]
+    ports:
+      - "5678:5678"
+    environment:
+      N8N_HOST: localhost
+      N8N_PORT: 5678
+      N8N_PROTOCOL: http
+      WEBHOOK_URL: http://localhost:5678/
+      GENERIC_TIMEZONE: Asia/Shanghai
+      TZ: Asia/Shanghai
+      # 与本站入站密钥对齐（workflow 回调时用）
+      N8N_INBOUND_SECRET: ${N8N_INBOUND_SECRET:-dev-local-n8n}
+      AI_SUPERMARKET_URL: ${NEXT_PUBLIC_SITE_URL:-http://host.docker.internal:3000}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - n8n-data:/home/node/.n8n
+      - ./n8n:/import:ro
+    depends_on:
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://127.0.0.1:5678/healthz || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 8
+      start_period: 40s
+
+  whisper:
+    build:
+      context: ./services/whisper
+    container_name: ai-supermarket-whisper
+    restart: unless-stopped
+    profiles: ["heavy", "full"]
+    ports:
+      - "8091:8091"
+    environment:
+      WHISPER_MODEL: ${WHISPER_MODEL:-base}
+      HF_ENDPOINT: ${HF_ENDPOINT:-https://hf-mirror.com}
+      HF_HUB_DISABLE_XET: "1"
+      WHISPER_INSECURE_SSL: ${WHISPER_INSECURE_SSL:-0}
+    volumes:
+      - whisper-cache:/root/.cache
+    healthcheck:
+      test: ["CMD-SHELL", "python -c \"import urllib.request; urllib.request.urlopen('http://127.0.0.1:8091/health')\""]
+      interval: 20s
+      timeout: 5s
+      retries: 8
+      start_period: 60s
+
+  docling:
+    build:
+      context: ./services/docling
+    container_name: ai-supermarket-docling
+    restart: unless-stopped
+    profiles: ["heavy", "full"]
+    ports:
+      - "8092:8092"
+    healthcheck:
+      test: ["CMD-SHELL", "python -c \"import urllib.request; urllib.request.urlopen('http://127.0.0.1:8092/health')\""]
+      interval: 20s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+
+  # Discord Token / Guild / Channel 用 .env.selfhost 注入，不要写进本站 Next .env
+  midjourney-proxy:
+    # 固定 tag：latest 在你这边仓库拉不到时会直接导致 compose 失败
+    image: novicezk/midjourney-proxy:2.6.3
+    container_name: ai-supermarket-mj-proxy
+    restart: unless-stopped
+    profiles: ["selfhost"]
+    ports:
+      - "8080:8080"
+    # 解决 Java 在容器里读取 cgroup mountpoint 为 null 导致的重启问题
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    environment:
+      - mj.api-secret=${MIDJOURNEY_API_SECRET:-}
+      - mj.discord.guild-id=${MJ_DISCORD_GUILD_ID:-}
+      - mj.discord.channel-id=${MJ_DISCORD_CHANNEL_ID:-}
+      - mj.discord.user-token=${MJ_DISCORD_USER_TOKEN:-}
+      - JAVA_OPTS=-XX:MaxRAMPercentage=85 -Djava.awt.headless=true -XX:+HeapDumpOnOutOfMemoryError -XX:MaxGCPauseMillis=20 -XX:InitiatingHeapOccupancyPercent=35 -Dlogging.file.path=/home/spring/logs -Dserver.port=8080 -Duser.timezone=Asia/Shanghai
+    healthcheck:
+      test: ["CMD-SHELL", "curl -sf http://127.0.0.1:8080/ >/dev/null || wget -q --spider http://127.0.0.1:8080/ || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 90s
+
+  # SUNO_COOKIE / TWOCAPTCHA_KEY 只放 .env.selfhost
+  suno-api:
+    # 由于你这边 pull 会 denied，这里改为源码 build（Docker 会联网拉代码）
+    build:
+      context: https://github.com/gcui-art/suno-api.git
+      dockerfile: Dockerfile
+      args:
+        # Dockerfile 需要这个值把 .env 塞进镜像
+        SUNO_COOKIE: ${SUNO_COOKIE:-}
+    container_name: ai-supermarket-suno-api
+    restart: unless-stopped
+    profiles: ["selfhost"]
+    ports:
+      - "3001:3000"
+    env_file:
+      - .env.selfhost
+    environment:
+      BROWSER: chromium
+      BROWSER_HEADLESS: "true"
+    healthcheck:
+      test: ["CMD-SHELL", "curl -sf http://127.0.0.1:3000/ >/dev/null || wget -q --spider http://127.0.0.1:3000/ || exit 1"]
+      interval: 30s
+      timeout: 15s
+      retries: 5
+      start_period: 120s
+
+volumes:
+  n8n-data:
+  whisper-cache:

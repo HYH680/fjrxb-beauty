@@ -1,0 +1,53 @@
+# New API 用量统计网关
+# 启动：docker compose up -d
+# 访问：http://localhost:3001  （首次进入按提示初始化 root 账号）
+# 说明：ai-supermarket 本身跑在 :3000，故网关用 :3001 避免冲突。
+services:
+  new-api:
+    image: calciumion/new-api:latest
+    container_name: ai-supermarket-newapi
+    restart: unless-stopped
+    ports:
+      - "3001:3000"
+    environment:
+      # 用 MySQL 持久化用量日志（含 token 数与请求耗时）
+      SQL_DSN: "newapi:newapi123@tcp(mysql:3306)/new-api"
+      REDIS_CONN_STRING: "redis://redis:6379"
+      TZ: Asia/Shanghai
+      # 会话加密密钥，生产请改成随机长字符串
+      CRYPTO_SECRET: "change-me-to-a-long-random-string"
+      # 初始 root 密码（首次启动后请立刻在 UI 修改）
+      INITIAL_ROOT_TOKEN: "sk-newapi-root-change-me"
+    volumes:
+      - new-api-data:/data
+    depends_on:
+      mysql:
+        condition: service_healthy
+      redis:
+        condition: service_started
+
+  mysql:
+    image: mysql:8.0
+    container_name: ai-supermarket-newapi-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass123
+      MYSQL_DATABASE: new-api
+      MYSQL_USER: newapi
+      MYSQL_PASSWORD: newapi123
+    volumes:
+      - mysql-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-prootpass123"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    container_name: ai-supermarket-newapi-redis
+    restart: unless-stopped
+
+volumes:
+  new-api-data:
+  mysql-data:

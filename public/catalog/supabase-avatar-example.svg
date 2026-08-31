@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="360" viewBox="0 0 640 360" fill="none">
+  <rect width="640" height="360" fill="#0b1210"/>
+  <defs>
+    <linearGradient id="bg" x1="50" y1="30" x2="590" y2="330" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#163028"/>
+      <stop offset="1" stop-color="#0d1814"/>
+    </linearGradient>
+  </defs>
+  <rect x="44" y="36" width="552" height="288" rx="18" fill="url(#bg)" stroke="#3ecf8e" stroke-opacity="0.4"/>
+  <!-- account card -->
+  <rect x="90" y="80" width="220" height="200" rx="14" fill="#0a1612" stroke="#3ecf8e" stroke-opacity="0.35"/>
+  <circle cx="200" cy="140" r="40" fill="#1a3d32" stroke="#3ecf8e" stroke-width="2"/>
+  <circle cx="200" cy="130" r="16" fill="#8fd6b8"/>
+  <ellipse cx="200" cy="168" rx="24" ry="16" fill="#8fd6b8"/>
+  <rect x="120" y="200" width="160" height="10" rx="3" fill="#2a4a40"/>
+  <rect x="140" y="222" width="120" height="10" rx="3" fill="#234038"/>
+  <rect x="150" y="248" width="100" height="18" rx="6" fill="#3ecf8e" opacity="0.85"/>
+  <!-- flow -->
+  <text x="340" y="120" fill="#3ecf8e" font-family="ui-monospace, Menlo, monospace" font-size="13">1. crop / pick file</text>
+  <text x="340" y="152" fill="#3ecf8e" font-family="ui-monospace, Menlo, monospace" font-size="13">2. storage.avatars</text>
+  <text x="340" y="184" fill="#3ecf8e" font-family="ui-monospace, Menlo, monospace" font-size="13">3. profiles.avatar_url</text>
+  <text x="340" y="216" fill="#3ecf8e" font-family="ui-monospace, Menlo, monospace" font-size="13">4. RLS policies</text>
+  <text x="340" y="268" fill="#6b9e88" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12">pattern only · auth optional</text>
+</svg>

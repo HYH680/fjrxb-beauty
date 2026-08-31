@@ -1,0 +1,6 @@
+{
+  "allOk": true,
+  "ttsProvider": "minimax-tts",
+  "cloneMode": "minimax-clone",
+  "notice": "选型通道失败后改用 MiniMax。{\"detail\":{\"type\":\"payment_required\",\"code\":\"paid_plan_required\",\"message\":\"Your subscription does not include instant voice cloning. Please upgrade your plan.\",\"status\":\"can_not_use_instant_voice_cloning\",\"request_id\":\"ef82cdffdc39ff93f60e29fb0897f06d\"}}"
+}

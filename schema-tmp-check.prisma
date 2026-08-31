@@ -1,0 +1,295 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String
+  password  String
+  role        String   @default("user")
+  industry    String?
+  occupation  String?
+  sessionEpoch Int     @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  resetTokens  PasswordResetToken[]
+  conversations Conversation[]
+  subscriptions Subscription[]
+  cartItems     CartItem[]
+  orders        Order[]
+  shopConnections ShopConnection[]
+  replyPlaybooks  ReplyPlaybook[]
+  reviewJobs      ReviewJob[]
+  shopMemories    ShopMemory[]
+  knowledgeChunks KnowledgeChunk[]
+  jobs            Job[]
+  usageEvents     UsageEvent[]
+}
+
+/** Durable per-user×service facts (shop type, preferences, open threads). */
+model ShopMemory {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  productId String
+  summary   String   @default("")
+  facts     String   @default("{}")
+  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now())
+
+  @@unique([userId, productId])
+  @@index([userId])
+}
+
+/** Light RAG chunks: menu, past copy, reviews — keyword + optional embedding. */
+model KnowledgeChunk {
+  id         String   @id @default(cuid())
+  userId     String
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  productId  String
+  source     String   @default("manual")
+  title      String   @default("")
+  text       String
+  embedding  String   @default("")
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@index([userId, productId])
+}
+
+/** Async jobs: contract reminders, draft retries, n8n callbacks. */
+model Job {
+  id          String    @id @default(cuid())
+  userId      String
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  productId   String    @default("")
+  type        String
+  payload     String    @default("{}")
+  status      String    @default("pending")
+  attempts    Int       @default(0)
+  lastError   String    @default("")
+  runAt       DateTime  @default(now())
+  finishedAt  DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@index([status, runAt])
+  @@index([userId, productId])
+}
+
+/** Local usage mirror when Langfuse is off; also used for account stats. */
+model UsageEvent {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  productId String   @default("")
+  model     String   @default("")
+  route     String   @default("")
+  tokensIn  Int      @default(0)
+  tokensOut Int      @default(0)
+  latencyMs Int      @default(0)
+  ok        Boolean  @default(true)
+  createdAt DateTime @default(now())
+
+  @@index([userId, createdAt])
+  @@index([productId])
+}
+
+model PasswordResetToken {
+  id         String    @id @default(cuid())
+  userId     String
+  user       User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  code       String
+  resetToken String?   @unique
+  expiresAt  DateTime
+  verifiedAt DateTime?
+  usedAt     DateTime?
+  createdAt  DateTime  @default(now())
+
+  @@index([userId])
+  @@index([resetToken])
+}
+
+model Conversation {
+  id        String        @id @default(cuid())
+  userId    String
+  productId String        @default("guide")
+  user      User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+  messages  ChatMessage[]
+
+  @@unique([userId, productId])
+  @@index([userId])
+}
+
+model ChatMessage {
+  id             String       @id @default(cuid())
+  conversationId String
+  conversation   Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  role           String
+  content        String
+  productIds     String       @default("[]")
+  createdAt      DateTime     @default(now())
+
+  @@index([conversationId])
+}
+
+model PlatformConfig {
+  id                String   @id @default("default")
+  baseUrl           String   @default("https://api.openai.com/v1")
+  apiKey            String   @default("")
+  model             String   @default("gpt-4o-mini")
+  /** JSON：旁路能力开关，如 {"n8n":true,"localWhisper":false} */
+  integrationFlags  String   @default("{}")
+  updatedAt         DateTime @updatedAt
+}
+
+model Subscription {
+  id            String   @id @default(cuid())
+  userId        String
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  productId     String
+  status        String   @default("requested")
+  paymentMethod String?
+  orderId       String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@unique([userId, productId])
+  @@index([userId])
+}
+
+model Order {
+  id            String      @id @default(cuid())
+  userId        String
+  user          User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  amount        Int
+  paymentMethod String
+  status        String      @default("pending")
+  providerRef   String?
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  items         OrderItem[]
+
+  @@index([userId])
+}
+
+model OrderItem {
+  id        String @id @default(cuid())
+  orderId   String
+  order     Order  @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  productId String
+  name      String
+  price     Int
+
+  @@index([orderId])
+}
+
+model CartItem {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  productId String
+  createdAt DateTime @default(now())
+
+  @@unique([userId, productId])
+  @@index([userId])
+}
+
+model CatalogProduct {
+  id              String   @id
+  name            String
+  description     String
+  longDescription String
+  category        String
+  price           Int
+  unit            String
+  tags            String   @default("[]")
+  features        String   @default("[]")
+  provider        String
+  badge           String?
+  pricingNote     String
+  access          String   @default("platform")
+  runtimeProvider String?
+  runtimeModel    String?
+  image           String
+  published       Boolean  @default(true)
+  sortOrder       Int      @default(0)
+  updatedAt       DateTime @updatedAt
+}
+
+model ShopConnection {
+  id           String      @id @default(cuid())
+  userId       String
+  user         User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  productId    String
+  platform     String
+  shopName     String
+  shopId       String      @default("")
+  appKeyEnc    String      @default("")
+  appSecretEnc String      @default("")
+  pullUrl      String      @default("")
+  replyUrl     String      @default("")
+  inboundToken String      @unique
+  status       String      @default("draft")
+  lastError    String      @default("")
+  lastSyncAt   DateTime?
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+  reviews      ReviewJob[]
+
+  @@index([userId, productId])
+}
+
+model ReplyPlaybook {
+  id              String   @id @default(cuid())
+  userId          String
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  productId       String
+  shopDisplayName String   @default("")
+  tone            String   @default("稳重热情")
+  addressAs       String   @default("我们")
+  mustInclude     String   @default("")
+  neverSay        String   @default("")
+  goodReviewHint  String   @default("")
+  badReviewHint   String   @default("")
+  extraPrompt     String   @default("")
+  autoSendGood    Boolean  @default(false)
+  selectedPlatforms String @default("[]")
+  skippedCredentials String @default("[]")
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@unique([userId, productId])
+}
+
+model ReviewJob {
+  id           String          @id @default(cuid())
+  userId       String
+  user         User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  productId    String
+  connectionId String?
+  connection   ShopConnection? @relation(fields: [connectionId], references: [id], onDelete: SetNull)
+  platform     String
+  externalId   String          @default("")
+  rating       Int             @default(5)
+  author       String          @default("")
+  content      String
+  draftReply   String          @default("")
+  status       String          @default("inbox")
+  lastError    String          @default("")
+  sentAt       DateTime?
+  createdAt    DateTime        @default(now())
+  updatedAt    DateTime        @updatedAt
+
+  @@index([userId, productId])
+  @@index([status])
+}

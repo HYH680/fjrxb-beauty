@@ -1,0 +1,427 @@
+{
+  "summary": {
+    "total": 27,
+    "ok": 27,
+    "fail": 0,
+    "failIds": [],
+    "shallowIds": [
+      "gpt-5.6-sol",
+      "deepseek-chat",
+      "claude-sonnet",
+      "gemini-pro",
+      "langchain-pro",
+      "cursor-pro",
+      "openai-assistants",
+      "ai-subtitle",
+      "smart-clip-select",
+      "menu-optimize",
+      "inventory-forecast"
+    ],
+    "modelsUsed": [
+      "deepseek-v4-pro",
+      "qwen3.8-max"
+    ]
+  },
+  "results": [
+    {
+      "productId": "gpt-5.6-sol",
+      "recommendedModel": "gpt-5.6-sol",
+      "task": "reasoning",
+      "http": 200,
+      "ok": true,
+      "usedModel": "deepseek-v4-pro",
+      "route": "DeepSeek V4 Pro · 复杂推理",
+      "error": null,
+      "replyLen": 44,
+      "replyPreview": "你好，我是「GPT-5.6 Sol 接入服务」顾问。先跟我说说你的店和现在最想解决的事？",
+      "asksFollowUp": true,
+      "gapHints": [
+        "shallow_reply"
+      ]
+    },
+    {
+      "productId": "qwen-plus",
+      "recommendedModel": "gpt-4o-mini",
+      "task": "chinese-copy",
+      "http": 200,
+      "ok": true,
+      "usedModel": "qwen3.8-max",
+      "route": "千问 3.8 Max · 中文内容",
+      "error": null,
+      "replyLen": 179,
+      "replyPreview": "可以开始了：先把「千问接入服务」里的模型和账单在阿里云百炼控制台开通；开通后我们就拿你这餐饮店的活动文案先试跑。\n\n先给你一条节假日促销短信：\n\n【门店名】假期到店有礼！凭本短信到店消费，享指定菜品 8.8 折，满 100 再送饮品一份。节假日人多，建议提前预约：电话/微信。退订回 T\n\n你现在把店名、主打菜/优惠力度发我，我帮你改成更像你店里会发的一版。",
+      "asksFollowUp": false,
+      "gapHints": []
+    },
+    {
+      "productId": "deepseek-chat",
+      "recommendedModel": "deepseek-v4-pro",
+      "task": "code",
+      "http": 200,
+      "ok": true,
+      "usedModel": "deepseek-v4-pro",
+      "route": "DeepSeek V4 Pro · 代码",
+      "error": null,
+      "replyLen": 41,
+      "replyPreview": "你好，我是「DeepSeek 接入服务」顾问。先跟我说说你的店和现在最想解决的事？",
+      "asksFollowUp": true,
+      "gapHints": [
+        "shallow_reply"
+      ]
+    },
+    {
+      "productId": "doubao-seed",
+      "recommendedModel": "gpt-4o-mini",
+      "task": "general",
+      "http": 200,
+      "ok": true,
+      "usedModel": "qwen3.8-max",
+      "route": "千问 3.8 Max · 通用对话",
+      "error": null,
+      "replyLen": 181,
+      "replyPreview": "现在先从“能直接用”开始：你把火锅优惠力度和截止时间发我，我把它改成社区团购群里能发的口径；正式接入后面再去火山方舟控制台开通模型和账单。\n\n先给你一版可直接发群的：\n\n各位邻居，想吃点热乎的啦？  \n咱家火锅到店福利来了：凭本群消息到店，享【满100减20】，限【本周五前】使用。  \n下班带家人朋友来涮一顿，热汤、肥牛、蘸料都安排上！  \n地址：【门店地址】",
+      "asksFollowUp": true,
+      "gapHints": []
+    },
+    {
+      "productId": "claude-sonnet",
+      "recommendedModel": "gpt-5.6-sol",
+      "task": "legal",
+      "http": 200,
+      "ok": true,
+      "usedModel": "deepseek-v4-pro",
+      "route": "DeepSeek V4 Pro · 合同审阅",
+      "error": null,
+      "replyLen": 62,
+      "replyPreview": "这段里还没有能落地的资料。请按资料清单复制模板，一次贴进窗口。没有的平台整段删掉，没有开放平台凭证的行留空。不要发登录密码。",
+      "asksFollowUp": false,
+      "gapHints": [
+        "shallow_reply"
+      ]
+    },
+    {
+      "productId": "gemini-pro",
+      "recommendedModel": "gpt-4o-mini",
+      "task": "general",
+      "http": 200,
+      "ok": true,
+      "usedModel": "qwen3.8-max",
+      "route": "千问 3.8 Max · 通用对话",
+      "error": null,
+      "replyLen": 73,
+      "replyPreview": "先按火锅证据点让商家补图：锅底/汤色、问题菜品、蘸料或洒漏、整单小票各一张。话术就发：“麻烦补拍这4张，光线亮、正面清晰，我们看到图马上做质检。”",
+      "asksFollowUp": false,
+      "gapHints": [
+        "shallow_reply"
+      ]
+    },
+    {
+      "productId": "dall-e-3",
+      "recommendedModel": "gpt-4o-mini",
+      "task": "general",
+      "http": 200,
+      "ok": true,
+      "usedModel": "qwen3.8-max",
+      "route": "千问 3.8 Max · 通用对话",
+      "error": null,
+      "replyLen": 216,
+      "replyPreview": "下一步就干一件事：把下面这条 prompt 粘进 DALL·E 先生成一张火锅主图，看效果再微调。\n\n**Prompt：**  \n“火锅店主视觉主图，45度俯拍，一口沸腾鸳鸯锅居中，红汤和番茄汤热气明显，周围摆毛肚、肥牛、菌菇、青菜，暖橙色侧逆光突出油亮质感和蒸汽，背景是虚化的火锅店灯光与木桌，商业美食摄影，高清，主体突出，上方留白可放标题。”\n\n如果你这张图准备放在团购、门头还是朋友圈海报，我可以再帮你把构图和留白调得更合适。",
+      "asksFollowUp": false,
+      "gapHints": []
+    },
+    {
+      "productId": "stable-diffusion-xl",
+      "recommendedModel": "gpt-4o-mini",
+      "task": "general",
+      "http": 200,
+      "ok": true,
+      "usedModel": "qwen3.8-max",
+      "route": "千问 3.8 Max · 通用对话",
+      "error": null,
+      "replyLen": 460,
+      "replyPreview": "现在就从一张菜单背景试起：把下面这组提示词丢进 Stability 先出一张，看看是不是你们火锅店的质感。\n\n**Prompt：**  \nChinese hot pot menu background, appetizing food photography, warm steam, red soup, fresh beef and vegetables, clean wooden table, soft light, negative",
+      "asksFollowUp": true,
+      "gapHints": []
+    },
+    {
+      "productId": "midjourney-api",
+      "recommendedModel": "gpt-4o-mini",
+      "task": "general",
+      "http": 200,
+      "ok": true,
+      "usedModel": "qwen3.8-max",
+      "route": "千问 3.8 Max · 通用对话",
+      "error": null,
+      "replyLen": 332,
+      "replyPreview": "现在先去 Midjourney 控制台确认模型和账单已开通，然后把下面这条直接粘进去，先出一张火锅店探店氛围图。\n\n**Prompt：**  \n`hotpot restaurant at night, boiling red soup pot with rising steam, warm lantern light, friends dining together, cozy smoky atmosphere, candid food",
+      "asksFollowUp": true,
+      "gapHints": []
+    },
+    {
+      "productId": "whisper-api",
+      "recommendedModel": "gpt-4o-mini",
+      "task": "general",
+      "http": 200,
+      "ok": true,
+      "usedModel": "qwen3.8-max",
+      "route": "千问 3.8 Max · 通用对话",
+      "error": null,
+      "replyLen": 158,
+      "replyPreview": "现在先拿一条真实火锅门店录音跑通：你把录音或已有转写发我，我先出文本。\n\n转写后我会按火锅差评维度提取：锅底、食材、服务、等位、卫生、价格，把“太辣、不新鲜、没人加汤、等太久”这类负面原句和高频词挑出来。\n\n方便先发最近一段录音或转写吗？暂时没有文件的话，先告诉我这段录音是门店例会还是顾客回访，我先帮你写提取口径。",
+      "asksFollowUp": true,
+      "gapHints": []
+    },
+    {
+      "productId": "elevenlabs-tts",
+      "recommendedModel": "gpt-4o-mini",
+      "task": "general",
+      "http": 200,
+      "ok": true,
+      "usedModel": "qwen3.8-max",
+      "route": "千问 3.8 Max · 通用对话",
+      "error": null,
+      "replyLen": 172,
+      "replyPreview": "可以开始了：先去 ElevenLabs 控制台确认模型和账单可用，再选一个中文音色，把下面这段贴进去试听。\n\n探店口播，可直接粘贴：  \n“刚进门，我就被这里的氛围感，拿捏住了。暖光，小店，还有一点刚好的烟火气。如果你也想找个地方，慢慢逛，慢慢吃，这家，真的可以来试试。”\n\n逗号就是停顿。方便的话，把店名或品类发我，我帮你改成更像你店的版本。",
+      "asksFollowUp": true,
+      "gapHints": []
+    },
+    {
+      "productId": "runway-gen3",
+      "recommendedModel": "gpt-4o-mini",
+      "task": "general",
+      "http": 200,
+      "ok": true,
+      "usedModel": "qwen3.8-max",
+      "route": "千问 3.8 Max · 通用对话",
+      "error": null,
+      "replyLen": 110,
+      "replyPreview": "现在直接用这句在 Runway 出 3 秒竖屏样片：俯拍锅底沸腾，红油气泡从中间翻起，镜头缓慢下压推近；最后一秒切低角度侧逆光，蒸汽掠过锅沿，微微环绕收出食欲感。\n\n你家是牛油红锅吗？我把颜色和蒸汽感调得更像你店里实拍。",
+      "asksFollowUp": true,
+      "gapHints": []
+    },
+    {
+      "productId": "langchain-pro",
+      "recommendedModel": "deepseek-v4-pro",
+      "task": "code",
+      "http": 200,
+      "ok": true,
+      "usedModel": "deepseek-v4-pro",
+      "route": "落地接入",
+      "error": null,
+      "replyLen": 48,
+      "replyPreview": "已收下你的提示词和口吻。美团、饿了么、京东、淘宝都按这一份来回。\n按场景给出接入步骤并开始落地。",
+      "asksFollowUp": false,
+      "gapHints": [
+        "shallow_reply"
+      ]
+    },
+    {
+      "productId": "cursor-pro",
+      "recommendedModel": "deepseek-v4-pro",
+      "task": "code",
+      "http": 200,
+      "ok": true,
+      "usedModel": "deepseek-v4-pro",
+      "route": "DeepSeek V4 Pro · 代码",
+      "error": null,
+      "replyLen": 34,
+      "replyPreview": "你好，我是「研发提效服务」顾问。先跟我说说你的店和现在最想解决的事？",
+      "asksFollowUp": true,
+      "gapHints": [
+        "shallow_reply"
+      ]
+    },
+    {
+      "productId": "pinecone",
+      "recommendedModel": "gpt-4o-mini",
+      "task": "general",
+      "http": 200,
+      "ok": true,
+      "usedModel": "qwen3.8-max",
+      "route": "千问 3.8 Max · 通用对话",
+      "error": null,
+      "replyLen": 289,
+      "replyPreview": "开始很简单：先把门店最常被问的 **10 条 FAQ** 整理成“问题 + 标准答案”，我就能帮你做首批入库和检索测试。\n\n门店 FAQ 可以按“一问答一条 vector”设计：`question` 生成 embedding 用于语义召回，`answer` 存原文；metadata 里放 `store_id、category、status、updated_at、source、keywords`。检索时用 `store_id/status",
+      "asksFollowUp": true,
+      "gapHints": []
+    },
+    {
+      "productId": "weaviate-cloud",
+      "recommendedModel": "gpt-4o-mini",
+      "task": "general",
+      "http": 200,
+      "ok": true,
+      "usedModel": "qwen3.8-max",
+      "route": "千问 3.8 Max · 通用对话",
+      "error": null,
+      "replyLen": 98,
+      "replyPreview": "现在先发我一条客服高频问题和标准答案，我帮你跑通“混合检索”的最小案例。  \n客服里关键词适合查订单号、价格、规格这类硬信息，向量适合听懂“怎么还没到”“能不能换”这种口语化问题。方便先发一条吗？",
+      "asksFollowUp": true,
+      "gapHints": []
+    },
+    {
+      "productId": "openai-assistants",
+      "recommendedModel": "gpt-5.6-sol",
+      "task": "reasoning",
+      "http": 200,
+      "ok": true,
+      "usedModel": "deepseek-v4-pro",
+      "route": "DeepSeek V4 Pro · 复杂推理",
+      "error": null,
+      "replyLen": 34,
+      "replyPreview": "你好，我是「业务助手搭建」顾问。先跟我说说你的店和现在最想解决的事？",
+      "asksFollowUp": true,
+      "gapHints": [
+        "shallow_reply"
+      ]
+    },
+    {
+      "productId": "replicate-api",
+      "recommendedModel": "gpt-4o-mini",
+      "task": "general",
+      "http": 200,
+      "ok": true,
+      "usedModel": "qwen3.8-max",
+      "route": "千问 3.8 Max · 通用对话",
+      "error": null,
+      "replyLen": 106,
+      "replyPreview": "开通后先做一张小样：去 Replicate 控制台建 API Key，拿一张你常用的菜单图做背景替换测试。因为第三方 API 会经手图片，先把价格、电话、二维码和顾客信息打码，跑通再批量；你现在方便打开控制台吗？",
+      "asksFollowUp": true,
+      "gapHints": []
+    },
+    {
+      "productId": "cohere-embed",
+      "recommendedModel": "gpt-4o-mini",
+      "task": "general",
+      "http": 200,
+      "ok": true,
+      "usedModel": "qwen3.8-max",
+      "route": "千问 3.8 Max · 通用对话",
+      "error": null,
+      "replyLen": 115,
+      "replyPreview": "现在就能开始：先把近期差评文本用 Cohere embed 生成向量，再按余弦相似度把向量相近的差评聚成一簇，每簇总结成“配送慢、包装破损、临期”这类问题标签。  \n你先给我 5–10 条匿名差评文本，我帮你定第一版相似聚类口径。",
+      "asksFollowUp": false,
+      "gapHints": []
+    },
+    {
+      "productId": "capcut-auto",
+      "recommendedModel": "gpt-4o-mini",
+      "task": "chinese-copy",
+      "http": 200,
+      "ok": true,
+      "usedModel": "qwen3.8-max",
+      "route": "千问 3.8 Max · 中文内容",
+      "error": null,
+      "replyLen": 285,
+      "replyPreview": "行，按你这个**火锅探店、干净风格**，我先给你一版能直接录的 30 秒口播：\n\n> 这锅一开，烟火气一下就出来了。  \n> 今天来吃一家很适合朋友约着冲的火锅。  \n> 重点看这个毛肚，新鲜、脆，涮到刚好卷起，蘸上油碟真的很香。  \n> 店里氛围也挺舒服，不吵，拍出来很干净。  \n> 想吃这口的，先收藏，评论区告诉我，你涮毛肚一般几秒？\n\n对应画面你可以这样配：  \n前 5 秒：火锅翻滚特写；  \n5-15 秒：毛肚下锅、涮烫、蘸料特",
+      "asksFollowUp": true,
+      "gapHints": []
+    },
+    {
+      "productId": "ai-subtitle",
+      "recommendedModel": "gpt-5.6-sol",
+      "task": "translation",
+      "http": 200,
+      "ok": true,
+      "usedModel": "deepseek-v4-pro",
+      "route": "DeepSeek V4 Pro · 跨境语言",
+      "error": null,
+      "replyLen": 38,
+      "replyPreview": "你好，我是「AI 字幕与翻译服务」顾问。先跟我说说你的店和现在最想解决的事？",
+      "asksFollowUp": true,
+      "gapHints": [
+        "shallow_reply"
+      ]
+    },
+    {
+      "productId": "smart-clip-select",
+      "recommendedModel": "gpt-5.6-sol",
+      "task": "analysis",
+      "http": 200,
+      "ok": true,
+      "usedModel": "deepseek-v4-pro",
+      "route": "DeepSeek V4 Pro · 分析",
+      "error": null,
+      "replyLen": 36,
+      "replyPreview": "你好，我是「智能素材筛选服务」顾问。先跟我说说你的店和现在最想解决的事？",
+      "asksFollowUp": true,
+      "gapHints": [
+        "shallow_reply"
+      ]
+    },
+    {
+      "productId": "digital-human",
+      "recommendedModel": "gpt-4o-mini",
+      "task": "chinese-copy",
+      "http": 200,
+      "ok": true,
+      "usedModel": "qwen3.8-max",
+      "route": "千问 3.8 Max · 中文内容",
+      "error": null,
+      "replyLen": 151,
+      "replyPreview": "稿子我先按火锅店的招牌写了个大概，你看下这个感觉行不行？\n\n“哈喽，今天来吃这家超赞的火锅！招牌牛油锅底，味道绝了。现在双人餐只要 XX 元，还送特色菜。想吃火锅的朋友，点个关注不迷路！”\n\n如果没问题，你把数字人平台的形象 ID 和你想要的口吻（比如：亲切女声/专业男声）发我，我这边就能安排生成了。",
+      "asksFollowUp": true,
+      "gapHints": []
+    },
+    {
+      "productId": "restaurant-cs",
+      "recommendedModel": "gpt-4o-mini",
+      "task": "customer-service",
+      "http": 200,
+      "ok": true,
+      "usedModel": "qwen3.8-max",
+      "route": "千问 3.8 Max · 中文客服",
+      "error": null,
+      "replyLen": 309,
+      "replyPreview": "这条可以直接发，语气像老板本人👇\n\n> 抱歉，让你等位等了40分钟，还把菜上错了，这确实是我们没做好。  \n> 周末忙不是理由，等位和上菜都没安排好，是我们的问题。我们已经重新核了对单和叫菜流程，避免再出现上错菜。  \n> 下次你来店里提前跟我说一声，我给你优先安排，再送一份招牌毛肚/鸭肠，这次算我们补你一次。  \n> — 老板\n\n如果想更短，也可以用这版👇\n\n> 抱歉，等位40分钟还上错菜，确实是我们没做好。我们已经重新核单，避免再出",
+      "asksFollowUp": false,
+      "gapHints": []
+    },
+    {
+      "productId": "menu-optimize",
+      "recommendedModel": "gpt-5.6-sol",
+      "task": "analysis",
+      "http": 200,
+      "ok": true,
+      "usedModel": "deepseek-v4-pro",
+      "route": "DeepSeek V4 Pro · 分析",
+      "error": null,
+      "replyLen": 34,
+      "replyPreview": "你好，我是「菜单优化服务」顾问。先跟我说说你的店和现在最想解决的事？",
+      "asksFollowUp": true,
+      "gapHints": [
+        "shallow_reply"
+      ]
+    },
+    {
+      "productId": "inventory-forecast",
+      "recommendedModel": "gpt-5.6-sol",
+      "task": "analysis",
+      "http": 200,
+      "ok": true,
+      "usedModel": "deepseek-v4-pro",
+      "route": "DeepSeek V4 Pro · 分析",
+      "error": null,
+      "replyLen": 36,
+      "replyPreview": "你好，我是「智能备货预测服务」顾问。先跟我说说你的店和现在最想解决的事？",
+      "asksFollowUp": true,
+      "gapHints": [
+        "shallow_reply"
+      ]
+    },
+    {
+      "productId": "retail-marketing",
+      "recommendedModel": "gpt-4o-mini",
+      "task": "chinese-copy",
+      "http": 200,
+      "ok": true,
+      "usedModel": "qwen3.8-max",
+      "route": "千问 3.8 Max · 中文内容",
+      "error": null,
+      "replyLen": 293,
+      "replyPreview": "记得：你是**重庆老火锅**，客单**120左右**，主要做**附近白领和情侣的周末生意**。\n\n**活动机制：周末双人满赠**  \n> 周五至周日，2人到店消费满258元，送「现切毛肚一份+冰镇酸梅汤2杯」。  \n> 每桌限1次，每天限30份。  \n> 口径：不直接打折，保住客单价，用“送招牌菜+解辣饮品”让客人觉得值。\n\n**朋友圈文案：**  \n> 周五下班别急着回家躺平🌶️  \n> 带喜欢的人来吃顿重庆老火锅。  \n> 牛油烧开",
+      "asksFollowUp": false,
+      "gapHints": []
+    }
+  ]
+}

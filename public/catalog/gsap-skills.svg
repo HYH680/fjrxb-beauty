@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="360" viewBox="0 0 640 360" fill="none">
+  <rect width="640" height="360" fill="#07140f"/>
+  <defs>
+    <linearGradient id="g" x1="80" y1="40" x2="560" y2="320" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0b3d2e"/>
+      <stop offset="1" stop-color="#0a1f18"/>
+    </linearGradient>
+  </defs>
+  <rect x="48" y="40" width="544" height="280" rx="18" fill="url(#g)" stroke="#88ce02" stroke-opacity="0.35"/>
+  <!-- timeline rail -->
+  <path d="M110 250 H530" stroke="#2f5f3a" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="150" cy="250" r="8" fill="#88ce02"/>
+  <circle cx="260" cy="250" r="8" fill="#a3e635"/>
+  <circle cx="370" cy="250" r="8" fill="#88ce02"/>
+  <circle cx="480" cy="250" r="8" fill="#bef264"/>
+  <!-- motion arcs -->
+  <path d="M150 250 C190 140, 230 140, 260 250" stroke="#88ce02" stroke-width="3" fill="none" opacity="0.9"/>
+  <path d="M260 250 C300 110, 340 110, 370 250" stroke="#a3e635" stroke-width="3" fill="none" opacity="0.85"/>
+  <path d="M370 250 C410 160, 450 160, 480 250" stroke="#88ce02" stroke-width="3" fill="none" opacity="0.8"/>
+  <!-- floating panel -->
+  <rect x="128" y="78" width="200" height="86" rx="12" fill="#0c2218" stroke="#88ce02" stroke-opacity="0.45"/>
+  <rect x="148" y="100" width="120" height="10" rx="3" fill="#88ce02"/>
+  <rect x="148" y="122" width="88" height="8" rx="3" fill="#3f6b48"/>
+  <rect x="148" y="140" width="148" height="8" rx="3" fill="#2a4a34"/>
+  <!-- code chip -->
+  <rect x="360" y="92" width="168" height="64" rx="10" fill="#0a1a14" stroke="#a3e635" stroke-opacity="0.4"/>
+  <text x="384" y="130" fill="#bef264" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18">gsap.to()</text>
+</svg>

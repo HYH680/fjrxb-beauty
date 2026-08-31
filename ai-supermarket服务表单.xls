@@ -1,0 +1,548 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xmlns:x="urn:schemas-microsoft-com:office:excel"
+ xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:html="http://www.w3.org/TR/REC-html40">
+ <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <Title>ai-supermarket服务表单</Title>
+  <Author>AI 超市</Author>
+  <Created>2026-08-14T13:54:42.162Z</Created>
+ </DocumentProperties>
+ <Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+   <Alignment ss:Vertical="Center" ss:WrapText="1"/>
+   <Font ss:FontName="Microsoft YaHei" ss:Size="11"/>
+  </Style>
+  <Style ss:ID="title">
+   <Font ss:FontName="Microsoft YaHei" ss:Size="18" ss:Bold="1"/>
+  </Style>
+  <Style ss:ID="subtitle">
+   <Font ss:FontName="Microsoft YaHei" ss:Size="11" ss:Color="#666666"/>
+  </Style>
+  <Style ss:ID="header">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center" ss:WrapText="1"/>
+   <Font ss:FontName="Microsoft YaHei" ss:Size="11" ss:Bold="1" ss:Color="#FFFFFF"/>
+   <Interior ss:Color="#1F4E79" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="ok">
+   <Font ss:FontName="Microsoft YaHei" ss:Color="#0B6A0B" ss:Bold="1"/>
+   <Interior ss:Color="#C6EFCE" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="bad">
+   <Font ss:FontName="Microsoft YaHei" ss:Color="#9C0006" ss:Bold="1"/>
+   <Interior ss:Color="#FFC7CE" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="warn">
+   <Font ss:FontName="Microsoft YaHei" ss:Color="#9C5700" ss:Bold="1"/>
+   <Interior ss:Color="#FFEB9C" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="muted">
+   <Font ss:FontName="Microsoft YaHei" ss:Color="#595959"/>
+   <Interior ss:Color="#F2F2F2" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="label">
+   <Font ss:FontName="Microsoft YaHei" ss:Bold="1"/>
+   <Interior ss:Color="#D6DCE4" ss:Pattern="Solid"/>
+  </Style>
+ </Styles>
+ <Worksheet ss:Name="服务总表">
+  <Table ss:ExpandedColumnCount="13" ss:ExpandedRowCount="30" x:FullColumns="1" x:FullRows="1">
+   <Column ss:Width="40"/>
+   <Column ss:Width="160"/>
+   <Column ss:Width="120"/>
+   <Column ss:Width="90"/>
+   <Column ss:Width="110"/>
+   <Column ss:Width="70"/>
+   <Column ss:Width="110"/>
+   <Column ss:Width="180"/>
+   <Column ss:Width="90"/>
+   <Column ss:Width="160"/>
+   <Column ss:Width="110"/>
+   <Column ss:Width="280"/>
+   <Column ss:Width="140"/>
+   <Row ss:Height="28">
+    <Cell ss:MergeAcross="12" ss:StyleID="title"><Data ss:Type="String">ai-supermarket 服务表单</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:MergeAcross="12" ss:StyleID="subtitle"><Data ss:Type="String">实测时间 2026-08-14 21:34。可直接用 5 项，接口不可用 0 项，缺密钥 3 项，仅辅导 19 项。密钥未写入本表。</Data></Cell>
+   </Row>
+   <Row ss:Height="24"><Cell ss:StyleID="header"><Data ss:Type="String">序号</Data></Cell><Cell ss:StyleID="header"><Data ss:Type="String">服务名称</Data></Cell><Cell ss:StyleID="header"><Data ss:Type="String">服务ID</Data></Cell><Cell ss:StyleID="header"><Data ss:Type="String">方向</Data></Cell><Cell ss:StyleID="header"><Data ss:Type="String">厂商</Data></Cell><Cell ss:StyleID="header"><Data ss:Type="String">月费（元）</Data></Cell><Cell ss:StyleID="header"><Data ss:Type="String">本站接入方式</Data></Cell><Cell ss:StyleID="header"><Data ss:Type="String">对话/接口模型</Data></Cell><Cell ss:StyleID="header"><Data ss:Type="String">密钥</Data></Cell><Cell ss:StyleID="header"><Data ss:Type="String">实测结果</Data></Cell><Cell ss:StyleID="header"><Data ss:Type="String">当前能不能直接用</Data></Cell><Cell ss:StyleID="header"><Data ss:Type="String">原因与下一步</Data></Cell><Cell ss:StyleID="header"><Data ss:Type="String">工作台路径</Data></Cell></Row>
+   <Row>
+      <Cell><Data ss:Type="Number">1</Data></Cell>
+      <Cell><Data ss:Type="String">GPT-5.6 Sol 接入服务</Data></Cell>
+      <Cell><Data ss:Type="String">gpt-5.6-sol</Data></Cell>
+      <Cell><Data ss:Type="String">对话与推理</Data></Cell>
+      <Cell><Data ss:Type="String">OpenAI</Data></Cell>
+      <Cell><Data ss:Type="Number">298</Data></Cell>
+      <Cell><Data ss:Type="String">客户官方账号</Data></Cell>
+      <Cell><Data ss:Type="String">openai / gpt-5.6-sol</Data></Cell>
+      <Cell><Data ss:Type="String">未填写</Data></Cell>
+      <Cell><Data ss:Type="String">未配置 OPENAI_API_KEY</Data></Cell>
+      <Cell ss:StyleID="warn"><Data ss:Type="String">缺密钥</Data></Cell>
+      <Cell><Data ss:Type="String">需要客户自己的 OpenAI 账号，或把官方密钥写入本机 .env。</Data></Cell>
+      <Cell><Data ss:Type="String">/use/gpt-5.6-sol</Data></Cell>
+    </Row>
+<Row>
+      <Cell><Data ss:Type="Number">2</Data></Cell>
+      <Cell><Data ss:Type="String">千问接入服务</Data></Cell>
+      <Cell><Data ss:Type="String">qwen-plus</Data></Cell>
+      <Cell><Data ss:Type="String">对话与推理</Data></Cell>
+      <Cell><Data ss:Type="String">阿里云百炼</Data></Cell>
+      <Cell><Data ss:Type="Number">198</Data></Cell>
+      <Cell><Data ss:Type="String">本站已接通</Data></Cell>
+      <Cell><Data ss:Type="String">qwen / qwen-plus</Data></Cell>
+      <Cell><Data ss:Type="String">已填写</Data></Cell>
+      <Cell><Data ss:Type="String">已接通，模型 qwen-plus</Data></Cell>
+      <Cell ss:StyleID="ok"><Data ss:Type="String">可直接用</Data></Cell>
+      <Cell><Data ss:Type="String">开通后点「进入服务」即可对话。</Data></Cell>
+      <Cell><Data ss:Type="String">/use/qwen-plus</Data></Cell>
+    </Row>
+<Row>
+      <Cell><Data ss:Type="Number">3</Data></Cell>
+      <Cell><Data ss:Type="String">DeepSeek 接入服务</Data></Cell>
+      <Cell><Data ss:Type="String">deepseek-chat</Data></Cell>
+      <Cell><Data ss:Type="String">对话与推理</Data></Cell>
+      <Cell><Data ss:Type="String">DeepSeek</Data></Cell>
+      <Cell><Data ss:Type="Number">168</Data></Cell>
+      <Cell><Data ss:Type="String">本站已配密钥</Data></Cell>
+      <Cell><Data ss:Type="String">deepseek / deepseek-chat</Data></Cell>
+      <Cell><Data ss:Type="String">已填写</Data></Cell>
+      <Cell><Data ss:Type="String">已接通，模型 deepseek-chat</Data></Cell>
+      <Cell ss:StyleID="ok"><Data ss:Type="String">可直接用</Data></Cell>
+      <Cell><Data ss:Type="String">开通后点「进入服务」即可对话。</Data></Cell>
+      <Cell><Data ss:Type="String">/use/deepseek-chat</Data></Cell>
+    </Row>
+<Row>
+      <Cell><Data ss:Type="Number">4</Data></Cell>
+      <Cell><Data ss:Type="String">豆包接入服务</Data></Cell>
+      <Cell><Data ss:Type="String">doubao-seed</Data></Cell>
+      <Cell><Data ss:Type="String">对话与推理</Data></Cell>
+      <Cell><Data ss:Type="String">火山方舟</Data></Cell>
+      <Cell><Data ss:Type="Number">168</Data></Cell>
+      <Cell><Data ss:Type="String">本站已接通</Data></Cell>
+      <Cell><Data ss:Type="String">doubao / doubao-seed-2-0-lite-260215</Data></Cell>
+      <Cell><Data ss:Type="String">已填写</Data></Cell>
+      <Cell><Data ss:Type="String">已接通，模型 doubao-seed-2-0-lite-260215</Data></Cell>
+      <Cell ss:StyleID="ok"><Data ss:Type="String">可直接用</Data></Cell>
+      <Cell><Data ss:Type="String">开通后点「进入服务」即可对话。</Data></Cell>
+      <Cell><Data ss:Type="String">/use/doubao-seed</Data></Cell>
+    </Row>
+<Row>
+      <Cell><Data ss:Type="Number">5</Data></Cell>
+      <Cell><Data ss:Type="String">Claude 接入服务</Data></Cell>
+      <Cell><Data ss:Type="String">claude-sonnet</Data></Cell>
+      <Cell><Data ss:Type="String">对话与推理</Data></Cell>
+      <Cell><Data ss:Type="String">Anthropic</Data></Cell>
+      <Cell><Data ss:Type="Number">228</Data></Cell>
+      <Cell><Data ss:Type="String">仅接入辅导</Data></Cell>
+      <Cell><Data ss:Type="String">无本站对话接口</Data></Cell>
+      <Cell><Data ss:Type="String">不需要本站密钥</Data></Cell>
+      <Cell><Data ss:Type="String">未接本站接口</Data></Cell>
+      <Cell ss:StyleID="muted"><Data ss:Type="String">仅辅导跟进</Data></Cell>
+      <Cell><Data ss:Type="String">开通后没有直接对话窗口，点「进入服务」把需求发给导购继续跟进。</Data></Cell>
+      <Cell><Data ss:Type="String">/use/claude-sonnet</Data></Cell>
+    </Row>
+<Row>
+      <Cell><Data ss:Type="Number">6</Data></Cell>
+      <Cell><Data ss:Type="String">Gemini 接入服务</Data></Cell>
+      <Cell><Data ss:Type="String">gemini-pro</Data></Cell>
+      <Cell><Data ss:Type="String">对话与推理</Data></Cell>
+      <Cell><Data ss:Type="String">Google</Data></Cell>
+      <Cell><Data ss:Type="Number">168</Data></Cell>
+      <Cell><Data ss:Type="String">仅接入辅导</Data></Cell>
+      <Cell><Data ss:Type="String">无本站对话接口</Data></Cell>
+      <Cell><Data ss:Type="String">不需要本站密钥</Data></Cell>
+      <Cell><Data ss:Type="String">未接本站接口</Data></Cell>
+      <Cell ss:StyleID="muted"><Data ss:Type="String">仅辅导跟进</Data></Cell>
+      <Cell><Data ss:Type="String">开通后没有直接对话窗口，点「进入服务」把需求发给导购继续跟进。</Data></Cell>
+      <Cell><Data ss:Type="String">/use/gemini-pro</Data></Cell>
+    </Row>
+<Row>
+      <Cell><Data ss:Type="Number">7</Data></Cell>
+      <Cell><Data ss:Type="String">DALL·E 视觉服务</Data></Cell>
+      <Cell><Data ss:Type="String">dall-e-3</Data></Cell>
+      <Cell><Data ss:Type="String">视觉创作</Data></Cell>
+      <Cell><Data ss:Type="String">OpenAI</Data></Cell>
+      <Cell><Data ss:Type="Number">168</Data></Cell>
+      <Cell><Data ss:Type="String">仅接入辅导</Data></Cell>
+      <Cell><Data ss:Type="String">无本站出图接口</Data></Cell>
+      <Cell><Data ss:Type="String">不需要本站密钥</Data></Cell>
+      <Cell><Data ss:Type="String">未接本站接口</Data></Cell>
+      <Cell ss:StyleID="muted"><Data ss:Type="String">仅辅导跟进</Data></Cell>
+      <Cell><Data ss:Type="String">开通后没有直接对话窗口，点「进入服务」把需求发给导购继续跟进。</Data></Cell>
+      <Cell><Data ss:Type="String">/use/dall-e-3</Data></Cell>
+    </Row>
+<Row>
+      <Cell><Data ss:Type="Number">8</Data></Cell>
+      <Cell><Data ss:Type="String">Stability 出图接入</Data></Cell>
+      <Cell><Data ss:Type="String">stable-diffusion-xl</Data></Cell>
+      <Cell><Data ss:Type="String">视觉创作</Data></Cell>
+      <Cell><Data ss:Type="String">Stability AI</Data></Cell>
+      <Cell><Data ss:Type="Number">198</Data></Cell>
+      <Cell><Data ss:Type="String">客户官方账号</Data></Cell>
+      <Cell><Data ss:Type="String">无本站出图接口</Data></Cell>
+      <Cell><Data ss:Type="String">未填写</Data></Cell>
+      <Cell><Data ss:Type="String">未配置 STABILITY_API_KEY</Data></Cell>
+      <Cell ss:StyleID="warn"><Data ss:Type="String">缺密钥</Data></Cell>
+      <Cell><Data ss:Type="String">需要 Stability 官方密钥。当前工作台没有出图窗口，开通后走接入辅导。</Data></Cell>
+      <Cell><Data ss:Type="String">/use/stable-diffusion-xl</Data></Cell>
+    </Row>
+<Row>
+      <Cell><Data ss:Type="Number">9</Data></Cell>
+      <Cell><Data ss:Type="String">Midjourney 创意服务</Data></Cell>
+      <Cell><Data ss:Type="String">midjourney-api</Data></Cell>
+      <Cell><Data ss:Type="String">视觉创作</Data></Cell>
+      <Cell><Data ss:Type="String">Midjourney</Data></Cell>
+      <Cell><Data ss:Type="Number">198</Data></Cell>
+      <Cell><Data ss:Type="String">仅接入辅导</Data></Cell>
+      <Cell><Data ss:Type="String">无本站出图接口</Data></Cell>
+      <Cell><Data ss:Type="String">不需要本站密钥</Data></Cell>
+      <Cell><Data ss:Type="String">未接本站接口</Data></Cell>
+      <Cell ss:StyleID="muted"><Data ss:Type="String">仅辅导跟进</Data></Cell>
+      <Cell><Data ss:Type="String">开通后没有直接对话窗口，点「进入服务」把需求发给导购继续跟进。</Data></Cell>
+      <Cell><Data ss:Type="String">/use/midjourney-api</Data></Cell>
+    </Row>
+<Row>
+      <Cell><Data ss:Type="Number">10</Data></Cell>
+      <Cell><Data ss:Type="String">会议转录服务</Data></Cell>
+      <Cell><Data ss:Type="String">whisper-api</Data></Cell>
+      <Cell><Data ss:Type="String">语音与影像</Data></Cell>
+      <Cell><Data ss:Type="String">OpenAI</Data></Cell>
+      <Cell><Data ss:Type="Number">99</Data></Cell>
+      <Cell><Data ss:Type="String">仅接入辅导</Data></Cell>
+      <Cell><Data ss:Type="String">无本站识别接口</Data></Cell>
+      <Cell><Data ss:Type="String">不需要本站密钥</Data></Cell>
+      <Cell><Data ss:Type="String">未接本站接口</Data></Cell>
+      <Cell ss:StyleID="muted"><Data ss:Type="String">仅辅导跟进</Data></Cell>
+      <Cell><Data ss:Type="String">开通后没有直接对话窗口，点「进入服务」把需求发给导购继续跟进。</Data></Cell>
+      <Cell><Data ss:Type="String">/use/whisper-api</Data></Cell>
+    </Row>
+<Row>
+      <Cell><Data ss:Type="Number">11</Data></Cell>
+      <Cell><Data ss:Type="String">声音与配音服务</Data></Cell>
+      <Cell><Data ss:Type="String">elevenlabs-tts</Data></Cell>
+      <Cell><Data ss:Type="String">语音与影像</Data></Cell>
+      <Cell><Data ss:Type="String">ElevenLabs</Data></Cell>
+      <Cell><Data ss:Type="Number">168</Data></Cell>
+      <Cell><Data ss:Type="String">仅接入辅导</Data></Cell>
+      <Cell><Data ss:Type="String">无本站合成接口</Data></Cell>
+      <Cell><Data ss:Type="String">不需要本站密钥</Data></Cell>
+      <Cell><Data ss:Type="String">未接本站接口</Data></Cell>
+      <Cell ss:StyleID="muted"><Data ss:Type="String">仅辅导跟进</Data></Cell>
+      <Cell><Data ss:Type="String">开通后没有直接对话窗口，点「进入服务」把需求发给导购继续跟进。</Data></Cell>
+      <Cell><Data ss:Type="String">/use/elevenlabs-tts</Data></Cell>
+    </Row>
+<Row>
+      <Cell><Data ss:Type="Number">12</Data></Cell>
+      <Cell><Data ss:Type="String">短视频生成服务</Data></Cell>
+      <Cell><Data ss:Type="String">runway-gen3</Data></Cell>
+      <Cell><Data ss:Type="String">语音与影像</Data></Cell>
+      <Cell><Data ss:Type="String">Runway</Data></Cell>
+      <Cell><Data ss:Type="Number">298</Data></Cell>
+      <Cell><Data ss:Type="String">仅接入辅导</Data></Cell>
+      <Cell><Data ss:Type="String">无本站生成接口</Data></Cell>
+      <Cell><Data ss:Type="String">不需要本站密钥</Data></Cell>
+      <Cell><Data ss:Type="String">未接本站接口</Data></Cell>
+      <Cell ss:StyleID="muted"><Data ss:Type="String">仅辅导跟进</Data></Cell>
+      <Cell><Data ss:Type="String">开通后没有直接对话窗口，点「进入服务」把需求发给导购继续跟进。</Data></Cell>
+      <Cell><Data ss:Type="String">/use/runway-gen3</Data></Cell>
+    </Row>
+<Row>
+      <Cell><Data ss:Type="Number">13</Data></Cell>
+      <Cell><Data ss:Type="String">Agent 落地服务</Data></Cell>
+      <Cell><Data ss:Type="String">langchain-pro</Data></Cell>
+      <Cell><Data ss:Type="String">研发协作</Data></Cell>
+      <Cell><Data ss:Type="String">LangChain</Data></Cell>
+      <Cell><Data ss:Type="Number">268</Data></Cell>
+      <Cell><Data ss:Type="String">仅接入辅导</Data></Cell>
+      <Cell><Data ss:Type="String">无本站 Agent 接口</Data></Cell>
+      <Cell><Data ss:Type="String">不需要本站密钥</Data></Cell>
+      <Cell><Data ss:Type="String">未接本站接口</Data></Cell>
+      <Cell ss:StyleID="muted"><Data ss:Type="String">仅辅导跟进</Data></Cell>
+      <Cell><Data ss:Type="String">开通后没有直接对话窗口，点「进入服务」把需求发给导购继续跟进。</Data></Cell>
+      <Cell><Data ss:Type="String">/use/langchain-pro</Data></Cell>
+    </Row>
+<Row>
+      <Cell><Data ss:Type="Number">14</Data></Cell>
+      <Cell><Data ss:Type="String">研发提效服务</Data></Cell>
+      <Cell><Data ss:Type="String">cursor-pro</Data></Cell>
+      <Cell><Data ss:Type="String">研发协作</Data></Cell>
+      <Cell><Data ss:Type="String">Cursor</Data></Cell>
+      <Cell><Data ss:Type="Number">99</Data></Cell>
+      <Cell><Data ss:Type="String">仅接入辅导</Data></Cell>
+      <Cell><Data ss:Type="String">无本站编辑器接口</Data></Cell>
+      <Cell><Data ss:Type="String">不需要本站密钥</Data></Cell>
+      <Cell><Data ss:Type="String">未接本站接口</Data></Cell>
+      <Cell ss:StyleID="muted"><Data ss:Type="String">仅辅导跟进</Data></Cell>
+      <Cell><Data ss:Type="String">开通后没有直接对话窗口，点「进入服务」把需求发给导购继续跟进。</Data></Cell>
+      <Cell><Data ss:Type="String">/use/cursor-pro</Data></Cell>
+    </Row>
+<Row>
+      <Cell><Data ss:Type="Number">15</Data></Cell>
+      <Cell><Data ss:Type="String">知识库托管服务</Data></Cell>
+      <Cell><Data ss:Type="String">pinecone</Data></Cell>
+      <Cell><Data ss:Type="String">知识检索</Data></Cell>
+      <Cell><Data ss:Type="String">Pinecone</Data></Cell>
+      <Cell><Data ss:Type="Number">228</Data></Cell>
+      <Cell><Data ss:Type="String">仅接入辅导</Data></Cell>
+      <Cell><Data ss:Type="String">无本站向量库接口</Data></Cell>
+      <Cell><Data ss:Type="String">不需要本站密钥</Data></Cell>
+      <Cell><Data ss:Type="String">未接本站接口</Data></Cell>
+      <Cell ss:StyleID="muted"><Data ss:Type="String">仅辅导跟进</Data></Cell>
+      <Cell><Data ss:Type="String">开通后没有直接对话窗口，点「进入服务」把需求发给导购继续跟进。</Data></Cell>
+      <Cell><Data ss:Type="String">/use/pinecone</Data></Cell>
+    </Row>
+<Row>
+      <Cell><Data ss:Type="Number">16</Data></Cell>
+      <Cell><Data ss:Type="String">混合检索服务</Data></Cell>
+      <Cell><Data ss:Type="String">weaviate-cloud</Data></Cell>
+      <Cell><Data ss:Type="String">知识检索</Data></Cell>
+      <Cell><Data ss:Type="String">Weaviate</Data></Cell>
+      <Cell><Data ss:Type="Number">168</Data></Cell>
+      <Cell><Data ss:Type="String">仅接入辅导</Data></Cell>
+      <Cell><Data ss:Type="String">无本站检索接口</Data></Cell>
+      <Cell><Data ss:Type="String">不需要本站密钥</Data></Cell>
+      <Cell><Data ss:Type="String">未接本站接口</Data></Cell>
+      <Cell ss:StyleID="muted"><Data ss:Type="String">仅辅导跟进</Data></Cell>
+      <Cell><Data ss:Type="String">开通后没有直接对话窗口，点「进入服务」把需求发给导购继续跟进。</Data></Cell>
+      <Cell><Data ss:Type="String">/use/weaviate-cloud</Data></Cell>
+    </Row>
+<Row>
+      <Cell><Data ss:Type="Number">17</Data></Cell>
+      <Cell><Data ss:Type="String">业务助手搭建</Data></Cell>
+      <Cell><Data ss:Type="String">openai-assistants</Data></Cell>
+      <Cell><Data ss:Type="String">接入与托管</Data></Cell>
+      <Cell><Data ss:Type="String">OpenAI</Data></Cell>
+      <Cell><Data ss:Type="Number">268</Data></Cell>
+      <Cell><Data ss:Type="String">客户官方账号</Data></Cell>
+      <Cell><Data ss:Type="String">openai / gpt-5.6-sol</Data></Cell>
+      <Cell><Data ss:Type="String">未填写</Data></Cell>
+      <Cell><Data ss:Type="String">未配置 OPENAI_API_KEY</Data></Cell>
+      <Cell ss:StyleID="warn"><Data ss:Type="String">缺密钥</Data></Cell>
+      <Cell><Data ss:Type="String">需要客户自己的 OpenAI 账号，或把官方密钥写入本机 .env。</Data></Cell>
+      <Cell><Data ss:Type="String">/use/openai-assistants</Data></Cell>
+    </Row>
+<Row>
+      <Cell><Data ss:Type="Number">18</Data></Cell>
+      <Cell><Data ss:Type="String">开源模型接入</Data></Cell>
+      <Cell><Data ss:Type="String">replicate-api</Data></Cell>
+      <Cell><Data ss:Type="String">接入与托管</Data></Cell>
+      <Cell><Data ss:Type="String">Replicate</Data></Cell>
+      <Cell><Data ss:Type="Number">168</Data></Cell>
+      <Cell><Data ss:Type="String">仅接入辅导</Data></Cell>
+      <Cell><Data ss:Type="String">无本站推理接口</Data></Cell>
+      <Cell><Data ss:Type="String">不需要本站密钥</Data></Cell>
+      <Cell><Data ss:Type="String">未接本站接口</Data></Cell>
+      <Cell ss:StyleID="muted"><Data ss:Type="String">仅辅导跟进</Data></Cell>
+      <Cell><Data ss:Type="String">开通后没有直接对话窗口，点「进入服务」把需求发给导购继续跟进。</Data></Cell>
+      <Cell><Data ss:Type="String">/use/replicate-api</Data></Cell>
+    </Row>
+<Row>
+      <Cell><Data ss:Type="Number">19</Data></Cell>
+      <Cell><Data ss:Type="String">检索增强服务</Data></Cell>
+      <Cell><Data ss:Type="String">cohere-embed</Data></Cell>
+      <Cell><Data ss:Type="String">接入与托管</Data></Cell>
+      <Cell><Data ss:Type="String">Cohere</Data></Cell>
+      <Cell><Data ss:Type="Number">138</Data></Cell>
+      <Cell><Data ss:Type="String">仅接入辅导</Data></Cell>
+      <Cell><Data ss:Type="String">无本站嵌入接口</Data></Cell>
+      <Cell><Data ss:Type="String">不需要本站密钥</Data></Cell>
+      <Cell><Data ss:Type="String">未接本站接口</Data></Cell>
+      <Cell ss:StyleID="muted"><Data ss:Type="String">仅辅导跟进</Data></Cell>
+      <Cell><Data ss:Type="String">开通后没有直接对话窗口，点「进入服务」把需求发给导购继续跟进。</Data></Cell>
+      <Cell><Data ss:Type="String">/use/cohere-embed</Data></Cell>
+    </Row>
+<Row>
+      <Cell><Data ss:Type="Number">20</Data></Cell>
+      <Cell><Data ss:Type="String">自动剪辑服务</Data></Cell>
+      <Cell><Data ss:Type="String">capcut-auto</Data></Cell>
+      <Cell><Data ss:Type="String">视频剪辑</Data></Cell>
+      <Cell><Data ss:Type="String">剪映 / CapCut</Data></Cell>
+      <Cell><Data ss:Type="Number">168</Data></Cell>
+      <Cell><Data ss:Type="String">仅接入辅导</Data></Cell>
+      <Cell><Data ss:Type="String">无本站剪辑接口</Data></Cell>
+      <Cell><Data ss:Type="String">不需要本站密钥</Data></Cell>
+      <Cell><Data ss:Type="String">未接本站接口</Data></Cell>
+      <Cell ss:StyleID="muted"><Data ss:Type="String">仅辅导跟进</Data></Cell>
+      <Cell><Data ss:Type="String">开通后没有直接对话窗口，点「进入服务」把需求发给导购继续跟进。</Data></Cell>
+      <Cell><Data ss:Type="String">/use/capcut-auto</Data></Cell>
+    </Row>
+<Row>
+      <Cell><Data ss:Type="Number">21</Data></Cell>
+      <Cell><Data ss:Type="String">AI 字幕与翻译服务</Data></Cell>
+      <Cell><Data ss:Type="String">ai-subtitle</Data></Cell>
+      <Cell><Data ss:Type="String">视频剪辑</Data></Cell>
+      <Cell><Data ss:Type="String">Whisper / 阿里翻译</Data></Cell>
+      <Cell><Data ss:Type="Number">99</Data></Cell>
+      <Cell><Data ss:Type="String">仅接入辅导</Data></Cell>
+      <Cell><Data ss:Type="String">无本站字幕接口</Data></Cell>
+      <Cell><Data ss:Type="String">不需要本站密钥</Data></Cell>
+      <Cell><Data ss:Type="String">未接本站接口</Data></Cell>
+      <Cell ss:StyleID="muted"><Data ss:Type="String">仅辅导跟进</Data></Cell>
+      <Cell><Data ss:Type="String">开通后没有直接对话窗口，点「进入服务」把需求发给导购继续跟进。</Data></Cell>
+      <Cell><Data ss:Type="String">/use/ai-subtitle</Data></Cell>
+    </Row>
+<Row>
+      <Cell><Data ss:Type="Number">22</Data></Cell>
+      <Cell><Data ss:Type="String">智能素材筛选服务</Data></Cell>
+      <Cell><Data ss:Type="String">smart-clip-select</Data></Cell>
+      <Cell><Data ss:Type="String">视频剪辑</Data></Cell>
+      <Cell><Data ss:Type="String">自研流程</Data></Cell>
+      <Cell><Data ss:Type="Number">138</Data></Cell>
+      <Cell><Data ss:Type="String">仅接入辅导</Data></Cell>
+      <Cell><Data ss:Type="String">无本站筛选接口</Data></Cell>
+      <Cell><Data ss:Type="String">不需要本站密钥</Data></Cell>
+      <Cell><Data ss:Type="String">未接本站接口</Data></Cell>
+      <Cell ss:StyleID="muted"><Data ss:Type="String">仅辅导跟进</Data></Cell>
+      <Cell><Data ss:Type="String">开通后没有直接对话窗口，点「进入服务」把需求发给导购继续跟进。</Data></Cell>
+      <Cell><Data ss:Type="String">/use/smart-clip-select</Data></Cell>
+    </Row>
+<Row>
+      <Cell><Data ss:Type="Number">23</Data></Cell>
+      <Cell><Data ss:Type="String">数字人短视频服务</Data></Cell>
+      <Cell><Data ss:Type="String">digital-human</Data></Cell>
+      <Cell><Data ss:Type="String">视频剪辑</Data></Cell>
+      <Cell><Data ss:Type="String">HeyGen / 腾讯智影</Data></Cell>
+      <Cell><Data ss:Type="Number">248</Data></Cell>
+      <Cell><Data ss:Type="String">仅接入辅导</Data></Cell>
+      <Cell><Data ss:Type="String">无本站数字人接口</Data></Cell>
+      <Cell><Data ss:Type="String">不需要本站密钥</Data></Cell>
+      <Cell><Data ss:Type="String">未接本站接口</Data></Cell>
+      <Cell ss:StyleID="muted"><Data ss:Type="String">仅辅导跟进</Data></Cell>
+      <Cell><Data ss:Type="String">开通后没有直接对话窗口，点「进入服务」把需求发给导购继续跟进。</Data></Cell>
+      <Cell><Data ss:Type="String">/use/digital-human</Data></Cell>
+    </Row>
+<Row>
+      <Cell><Data ss:Type="Number">24</Data></Cell>
+      <Cell><Data ss:Type="String">餐饮评价回复服务</Data></Cell>
+      <Cell><Data ss:Type="String">restaurant-cs</Data></Cell>
+      <Cell><Data ss:Type="String">餐饮零售</Data></Cell>
+      <Cell><Data ss:Type="String">千问</Data></Cell>
+      <Cell><Data ss:Type="Number">99</Data></Cell>
+      <Cell><Data ss:Type="String">本站已接通</Data></Cell>
+      <Cell><Data ss:Type="String">qwen / qwen-plus</Data></Cell>
+      <Cell><Data ss:Type="String">已填写</Data></Cell>
+      <Cell><Data ss:Type="String">已接通，模型 qwen-plus</Data></Cell>
+      <Cell ss:StyleID="ok"><Data ss:Type="String">可直接用</Data></Cell>
+      <Cell><Data ss:Type="String">开通后点「进入服务」即可对话。</Data></Cell>
+      <Cell><Data ss:Type="String">/use/restaurant-cs</Data></Cell>
+    </Row>
+<Row>
+      <Cell><Data ss:Type="Number">25</Data></Cell>
+      <Cell><Data ss:Type="String">菜单优化服务</Data></Cell>
+      <Cell><Data ss:Type="String">menu-optimize</Data></Cell>
+      <Cell><Data ss:Type="String">餐饮零售</Data></Cell>
+      <Cell><Data ss:Type="String">千问 / GPT</Data></Cell>
+      <Cell><Data ss:Type="Number">168</Data></Cell>
+      <Cell><Data ss:Type="String">仅接入辅导</Data></Cell>
+      <Cell><Data ss:Type="String">无本站对话接口</Data></Cell>
+      <Cell><Data ss:Type="String">不需要本站密钥</Data></Cell>
+      <Cell><Data ss:Type="String">未接本站接口</Data></Cell>
+      <Cell ss:StyleID="muted"><Data ss:Type="String">仅辅导跟进</Data></Cell>
+      <Cell><Data ss:Type="String">开通后没有直接对话窗口，点「进入服务」把需求发给导购继续跟进。</Data></Cell>
+      <Cell><Data ss:Type="String">/use/menu-optimize</Data></Cell>
+    </Row>
+<Row>
+      <Cell><Data ss:Type="Number">26</Data></Cell>
+      <Cell><Data ss:Type="String">智能备货预测服务</Data></Cell>
+      <Cell><Data ss:Type="String">inventory-forecast</Data></Cell>
+      <Cell><Data ss:Type="String">餐饮零售</Data></Cell>
+      <Cell><Data ss:Type="String">自研流程</Data></Cell>
+      <Cell><Data ss:Type="Number">198</Data></Cell>
+      <Cell><Data ss:Type="String">仅接入辅导</Data></Cell>
+      <Cell><Data ss:Type="String">无本站预测接口</Data></Cell>
+      <Cell><Data ss:Type="String">不需要本站密钥</Data></Cell>
+      <Cell><Data ss:Type="String">未接本站接口</Data></Cell>
+      <Cell ss:StyleID="muted"><Data ss:Type="String">仅辅导跟进</Data></Cell>
+      <Cell><Data ss:Type="String">开通后没有直接对话窗口，点「进入服务」把需求发给导购继续跟进。</Data></Cell>
+      <Cell><Data ss:Type="String">/use/inventory-forecast</Data></Cell>
+    </Row>
+<Row>
+      <Cell><Data ss:Type="Number">27</Data></Cell>
+      <Cell><Data ss:Type="String">餐饮营销内容服务</Data></Cell>
+      <Cell><Data ss:Type="String">retail-marketing</Data></Cell>
+      <Cell><Data ss:Type="String">餐饮零售</Data></Cell>
+      <Cell><Data ss:Type="String">DeepSeek</Data></Cell>
+      <Cell><Data ss:Type="Number">138</Data></Cell>
+      <Cell><Data ss:Type="String">本站已配密钥</Data></Cell>
+      <Cell><Data ss:Type="String">deepseek / deepseek-chat</Data></Cell>
+      <Cell><Data ss:Type="String">已填写</Data></Cell>
+      <Cell><Data ss:Type="String">已接通，模型 deepseek-chat</Data></Cell>
+      <Cell ss:StyleID="ok"><Data ss:Type="String">可直接用</Data></Cell>
+      <Cell><Data ss:Type="String">开通后点「进入服务」即可对话。</Data></Cell>
+      <Cell><Data ss:Type="String">/use/retail-marketing</Data></Cell>
+    </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <FreezePanes/>
+   <FrozenNoSplit/>
+   <SplitHorizontal>3</SplitHorizontal>
+   <TopRowBottomPane>3</TopRowBottomPane>
+   <FreezePanes/>
+   <FrozenNoSplit/>
+  </WorksheetOptions>
+ </Worksheet>
+ <Worksheet ss:Name="接口实测">
+  <Table ss:ExpandedColumnCount="2" ss:ExpandedRowCount="15">
+   <Column ss:Width="120"/>
+   <Column ss:Width="520"/>
+   <Row ss:Height="28">
+    <Cell ss:MergeAcross="1" ss:StyleID="title"><Data ss:Type="String">本机接口实测</Data></Cell>
+   </Row>
+   <Row>
+      <Cell ss:StyleID="label"><Data ss:Type="String">检查时间</Data></Cell>
+      <Cell><Data ss:Type="String">2026-08-14 21:34</Data></Cell>
+    </Row>
+<Row>
+      <Cell ss:StyleID="label"><Data ss:Type="String">导购线路</Data></Cell>
+      <Cell><Data ss:Type="String">LLM_PROVIDER=qwen；实测可用</Data></Cell>
+    </Row>
+<Row>
+      <Cell ss:StyleID="label"><Data ss:Type="String">目录服务数</Data></Cell>
+      <Cell><Data ss:Type="String">27</Data></Cell>
+    </Row>
+<Row>
+      <Cell ss:StyleID="label"><Data ss:Type="String">可直接用</Data></Cell>
+      <Cell><Data ss:Type="String">千问接入服务、DeepSeek 接入服务、豆包接入服务、餐饮评价回复服务、餐饮营销内容服务</Data></Cell>
+    </Row>
+<Row>
+      <Cell ss:StyleID="label"><Data ss:Type="String">接口不可用</Data></Cell>
+      <Cell><Data ss:Type="String">无</Data></Cell>
+    </Row>
+<Row>
+      <Cell ss:StyleID="label"><Data ss:Type="String">缺密钥</Data></Cell>
+      <Cell><Data ss:Type="String">GPT-5.6 Sol 接入服务、Stability 出图接入、业务助手搭建</Data></Cell>
+    </Row>
+<Row>
+      <Cell ss:StyleID="label"><Data ss:Type="String">仅辅导跟进</Data></Cell>
+      <Cell><Data ss:Type="String">19 项，开通后走导购跟进，没有本站对话窗口</Data></Cell>
+    </Row>
+<Row>
+      <Cell ss:StyleID="label"><Data ss:Type="String">千问</Data></Cell>
+      <Cell><Data ss:Type="String">已接通，模型 qwen-plus</Data></Cell>
+    </Row>
+<Row>
+      <Cell ss:StyleID="label"><Data ss:Type="String">豆包</Data></Cell>
+      <Cell><Data ss:Type="String">已接通，模型 doubao-seed-2-0-lite-260215</Data></Cell>
+    </Row>
+<Row>
+      <Cell ss:StyleID="label"><Data ss:Type="String">DeepSeek</Data></Cell>
+      <Cell><Data ss:Type="String">已接通，模型 deepseek-chat</Data></Cell>
+    </Row>
+<Row>
+      <Cell ss:StyleID="label"><Data ss:Type="String">OpenAI</Data></Cell>
+      <Cell><Data ss:Type="String">未配置密钥</Data></Cell>
+    </Row>
+<Row>
+      <Cell ss:StyleID="label"><Data ss:Type="String">Stability</Data></Cell>
+      <Cell><Data ss:Type="String">未配置密钥</Data></Cell>
+    </Row>
+<Row>
+      <Cell ss:StyleID="label"><Data ss:Type="String">说明</Data></Cell>
+      <Cell><Data ss:Type="String">月费是本站服务费，不是模型 token 转售。正式调用按各厂商计费。密钥未写入表格。</Data></Cell>
+    </Row>
+  </Table>
+ </Worksheet>
+</Workbook>

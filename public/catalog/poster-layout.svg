@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="360" viewBox="0 0 640 360" fill="none">
+  <defs>
+    <linearGradient id="pl" x1="40" y1="20" x2="600" y2="340" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#12181f"/>
+      <stop offset="1" stop-color="#1a2a28"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="360" fill="url(#pl)"/>
+  <rect x="80" y="40" width="220" height="280" rx="10" fill="#0e1418" stroke="#7dd3c0" stroke-width="2"/>
+  <rect x="100" y="60" width="180" height="36" rx="4" fill="#e8b86d"/>
+  <rect x="100" y="112" width="180" height="90" rx="6" fill="#1e3a36" stroke="#5b8a7a"/>
+  <rect x="100" y="220" width="120" height="10" rx="2" fill="#94a3b8" opacity="0.5"/>
+  <rect x="100" y="242" width="160" height="8" rx="2" fill="#94a3b8" opacity="0.3"/>
+  <rect x="100" y="270" width="80" height="28" rx="6" fill="#7dd3c0"/>
+  <line x1="340" y1="50" x2="340" y2="310" stroke="#334155" stroke-dasharray="6 8"/>
+  <rect x="370" y="70" width="200" height="14" rx="3" fill="#e8b86d" opacity="0.85"/>
+  <rect x="370" y="110" width="160" height="10" rx="2" fill="#7dd3c0" opacity="0.7"/>
+  <rect x="370" y="140" width="200" height="10" rx="2" fill="#94a3b8" opacity="0.35"/>
+  <rect x="370" y="170" width="180" height="10" rx="2" fill="#94a3b8" opacity="0.25"/>
+  <rect x="370" y="220" width="90" height="40" rx="6" fill="#1e3a36" stroke="#7dd3c0"/>
+  <text x="415" y="246" text-anchor="middle" fill="#ecfeff" font-family="Georgia, serif" font-size="14">CTA</text>
+</svg>

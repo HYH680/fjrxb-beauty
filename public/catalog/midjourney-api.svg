@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="360" viewBox="0 0 640 360" fill="none">
+  <defs>
+    <linearGradient id="mj-bg" x1="0" y1="0" x2="640" y2="360" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0c1222"/>
+      <stop offset="0.5" stop-color="#13233a"/>
+      <stop offset="1" stop-color="#0f3d3a"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="360" fill="url(#mj-bg)"/>
+  <circle cx="540" cy="64" r="100" fill="#155e75" opacity="0.28"/>
+  <circle cx="80" cy="300" r="120" fill="#0f766e" opacity="0.22"/>
+  <rect x="86" y="58" width="468" height="244" rx="18" fill="#0b1624" stroke="#5eead4" stroke-width="2"/>
+  <rect x="112" y="84" width="196" height="148" rx="10" fill="#134e4a"/>
+  <rect x="128" y="100" width="164" height="92" rx="6" fill="#042f2e"/>
+  <circle cx="210" cy="146" r="28" fill="#2dd4bf" opacity="0.85"/>
+  <rect x="128" y="202" width="110" height="8" rx="4" fill="#5eead4"/>
+  <rect x="128" y="216" width="72" height="6" rx="3" fill="#99f6e4"/>
+  <rect x="332" y="84" width="196" height="192" rx="10" fill="#111827" stroke="#fbbf24" stroke-width="2"/>
+  <rect x="352" y="108" width="156" height="108" rx="6" fill="#1e293b"/>
+  <path d="M360 196l36-48 28 22 32-40 52 66H360z" fill="#2dd4bf" opacity="0.7"/>
+  <rect x="352" y="232" width="96" height="8" rx="4" fill="#fbbf24"/>
+  <rect x="352" y="248" width="64" height="6" rx="3" fill="#a8a29e"/>
+</svg>

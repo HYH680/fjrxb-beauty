@@ -1,0 +1,245 @@
+{
+  "name": "AI智能体超市 · 评价同步与提醒",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "description": "接收本站出站事件；定时回调本站起草评价；合同提醒转发。导入后改 webhook 路径与站点 URL/密钥。"
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "ai-supermarket",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "wh-inbound",
+      "name": "接收本站事件",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [0, 0],
+      "webhookId": "ai-supermarket-ops"
+    },
+    {
+      "parameters": {
+        "jsCode": "const body = $input.first().json;\nconst event = body.event || body.action || 'unknown';\nreturn [{ json: { ...body, _event: event } }];"
+      },
+      "id": "norm",
+      "name": "规范化事件",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [220, 0]
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": { "caseSensitive": true, "leftValue": "", "typeValidation": "strict" },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json._event }}",
+                    "rightValue": "contract-reminder",
+                    "operator": { "type": "string", "operation": "equals" }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "contract-reminder"
+            },
+            {
+              "conditions": {
+                "options": { "caseSensitive": true, "leftValue": "", "typeValidation": "strict" },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json._event }}",
+                    "rightValue": "draft-reviews",
+                    "operator": { "type": "string", "operation": "equals" }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "draft-reviews"
+            },
+            {
+              "conditions": {
+                "options": { "caseSensitive": true, "leftValue": "", "typeValidation": "strict" },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json._event }}",
+                    "rightValue": "pong",
+                    "operator": { "type": "string", "operation": "equals" }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "pong"
+            }
+          ]
+        },
+        "options": { "fallbackOutput": "extra" }
+      },
+      "id": "switch",
+      "name": "按事件分流",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3,
+      "position": [440, 0]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { ok: true, handled: 'contract-reminder', title: $json.title || '', detail: $json.detail || '' } }}",
+        "options": {}
+      },
+      "id": "resp-reminder",
+      "name": "回应·合同提醒",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [700, -160]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ ($env.AI_SUPERMARKET_URL || 'http://host.docker.internal:3000') + '/api/integrations/n8n' }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "X-N8N-Secret",
+              "value": "={{ $env.N8N_INBOUND_SECRET || 'change-me' }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ action: 'draft-reviews', userId: $json.userId, productId: $json.productId }) }}",
+        "options": {}
+      },
+      "id": "http-draft",
+      "name": "回调本站起草评价",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [700, 40]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { ok: true, drafted: $json } }}",
+        "options": {}
+      },
+      "id": "resp-draft",
+      "name": "回应·起草结果",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [920, 40]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { ok: true, pong: true, at: new Date().toISOString() } }}",
+        "options": {}
+      },
+      "id": "resp-pong",
+      "name": "回应·pong",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [700, 220]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { ok: true, ignored: $json._event } }}",
+        "options": {}
+      },
+      "id": "resp-other",
+      "name": "回应·其它事件",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [700, 400]
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [{ "field": "hours", "hoursInterval": 1 }]
+        }
+      },
+      "id": "cron",
+      "name": "每小时巡检",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [0, 560]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ ($env.AI_SUPERMARKET_URL || 'http://host.docker.internal:3000') + '/api/integrations/n8n' }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "X-N8N-Secret",
+              "value": "={{ $env.N8N_INBOUND_SECRET || 'change-me' }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ action: 'ping' }) }}",
+        "options": {}
+      },
+      "id": "cron-ping",
+      "name": "定时 ping 本站",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [260, 560]
+    },
+    {
+      "parameters": {
+        "content": "## 使用说明\n1. 导入后激活「接收本站事件」Webhook，把 Production URL 填进本站 `.env` 的 `N8N_WEBHOOK_URL`。\n2. 在 n8n 环境变量设 `AI_SUPERMARKET_URL`（本站地址）和 `N8N_INBOUND_SECRET`（与本站相同）。\n3. 本站出站事件：`contract-reminder` / `draft-reviews` / `n8n-dispatch` / `pong`。\n4. 定时节点仅作连通性巡检；真正拉评请在店铺 webhook 齐备后，把 cron 改成带 userId/productId 的 `draft-reviews`。",
+        "height": 280,
+        "width": 420
+      },
+      "id": "note",
+      "name": "说明",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [-40, -280]
+    }
+  ],
+  "connections": {
+    "接收本站事件": {
+      "main": [[{ "node": "规范化事件", "type": "main", "index": 0 }]]
+    },
+    "规范化事件": {
+      "main": [[{ "node": "按事件分流", "type": "main", "index": 0 }]]
+    },
+    "按事件分流": {
+      "main": [
+        [{ "node": "回应·合同提醒", "type": "main", "index": 0 }],
+        [{ "node": "回调本站起草评价", "type": "main", "index": 0 }],
+        [{ "node": "回应·pong", "type": "main", "index": 0 }],
+        [{ "node": "回应·其它事件", "type": "main", "index": 0 }]
+      ]
+    },
+    "回调本站起草评价": {
+      "main": [[{ "node": "回应·起草结果", "type": "main", "index": 0 }]]
+    },
+    "每小时巡检": {
+      "main": [[{ "node": "定时 ping 本站", "type": "main", "index": 0 }]]
+    }
+  }
+}

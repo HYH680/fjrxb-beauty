@@ -1,0 +1,29 @@
+{
+  "allOk": true,
+  "results": {
+    "deny-without-consent": {
+      "ok": true
+    },
+    "sample-tts": {
+      "ok": true,
+      "provider": "dashscope-tts",
+      "mime": "audio/mpeg"
+    },
+    "enroll": {
+      "ok": true,
+      "voice": "qwen-tts-vc-smokeshop-voice-20260816151844812-5298",
+      "targetModel": "qwen3-tts-vc-2026-01-22",
+      "fallbackMode": false
+    },
+    "clone-tts": {
+      "ok": true,
+      "provider": "dashscope-tts",
+      "mime": "audio/wav"
+    },
+    "via-media-helper": {
+      "ok": true,
+      "cloneMode": "dashscope-clone",
+      "notice": "已用上传样本在千问登记克隆音色并完成试听。"
+    }
+  }
+}

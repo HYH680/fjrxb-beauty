@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="360" viewBox="0 0 640 360" fill="none">
+  <rect width="640" height="360" fill="#1a1520"/>
+  <path d="M120 220 L200 100 L280 220 Z" fill="#a78bfa" opacity="0.35"/>
+  <path d="M280 240 L380 90 L480 240 Z" fill="#f472b6" opacity="0.55"/>
+  <path d="M360 260 L460 120 L560 260 Z" fill="#34d399" opacity="0.45"/>
+  <rect x="100" y="280" width="440" height="10" rx="5" fill="#e2e8f0" opacity="0.25"/>
+</svg>

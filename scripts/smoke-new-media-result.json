@@ -1,0 +1,56 @@
+{
+  "allOk": true,
+  "results": {
+    "product:voice-clone": {
+      "ok": true,
+      "name": "声音克隆服务",
+      "category": "speech"
+    },
+    "product:ai-music-bgm": {
+      "ok": true,
+      "name": "AI 配乐服务",
+      "category": "speech"
+    },
+    "product:ai-video-gen": {
+      "ok": true,
+      "name": "视频生成服务",
+      "category": "video-edit"
+    },
+    "brief:voice-clone": {
+      "ok": true,
+      "kind": "playbook-run"
+    },
+    "brief:ai-music-bgm": {
+      "ok": true
+    },
+    "caps:voice-clone": [
+      "voice-clone"
+    ],
+    "caps:ai-music-bgm": [
+      "music"
+    ],
+    "caps:ai-video-gen": [
+      "image"
+    ],
+    "caps:check": {
+      "ok": true
+    },
+    "video:still-to-motion": {
+      "ok": true,
+      "size": "1024*1024",
+      "promptPreview": "哑光白色保温杯主图，要做成 8 秒轻微旋转动效。商品静图生成 5–10 秒动效：主体稳定、背景或光影微动、镜头轻推或环绕，适合电商主图视频；不要变形、不要乱加文字。画面比例 1:1，输出清晰度倾向 1K。按视频分镜/关键帧描述来画，构图适合后续成片"
+    },
+    "music:brief": {
+      "ok": true,
+      "title": "短视频 BGM · 轻松明亮",
+      "sunoPrompt": "轻松明亮 instrumental, catchy but clean, loopable bed, inspired by: 咖啡店周末促销短视频，旁白需要清楚，节奏轻快, 15 seconds"
+    },
+    "clone:deny-without-consent": {
+      "ok": true
+    },
+    "clone:preview": {
+      "ok": true,
+      "detail": "dashscope-tts/preview-generic"
+    }
+  }
+}

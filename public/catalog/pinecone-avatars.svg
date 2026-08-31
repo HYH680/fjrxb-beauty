@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="360" viewBox="0 0 640 360" fill="none">
+  <rect width="640" height="360" fill="#12100c"/>
+  <defs>
+    <linearGradient id="bg" x1="40" y1="20" x2="600" y2="340" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2a2418"/>
+      <stop offset="1" stop-color="#16130e"/>
+    </linearGradient>
+  </defs>
+  <rect x="44" y="36" width="552" height="288" rx="18" fill="url(#bg)" stroke="#d4a574" stroke-opacity="0.4"/>
+  <!-- picker grid of faces -->
+  <circle cx="160" cy="150" r="48" fill="#7eb8da"/>
+  <circle cx="160" cy="142" r="22" fill="#f2c4a0"/>
+  <ellipse cx="160" cy="128" rx="26" ry="14" fill="#3d2914"/>
+  <circle cx="152" cy="140" r="3" fill="#2a1a10"/>
+  <circle cx="168" cy="140" r="3" fill="#2a1a10"/>
+  <path d="M150 152 Q160 160 170 152" stroke="#2a1a10" stroke-width="2" fill="none"/>
+  <circle cx="320" cy="150" r="48" fill="#e8a090"/>
+  <circle cx="320" cy="142" r="22" fill="#f2c4a0"/>
+  <ellipse cx="320" cy="126" rx="28" ry="16" fill="#5c3a1e"/>
+  <circle cx="312" cy="140" r="3" fill="#2a1a10"/>
+  <circle cx="328" cy="140" r="3" fill="#2a1a10"/>
+  <circle cx="312" cy="154" r="4" fill="#e07070" opacity="0.5"/>
+  <circle cx="328" cy="154" r="4" fill="#e07070" opacity="0.5"/>
+  <path d="M310 156 Q320 168 330 156" stroke="#2a1a10" stroke-width="2" fill="none"/>
+  <circle cx="480" cy="150" r="48" fill="#90c9a0"/>
+  <circle cx="480" cy="142" r="22" fill="#f2c4a0"/>
+  <path d="M452 118 Q480 100 508 118 L500 140 Q480 128 460 140 Z" fill="#1a1a1a"/>
+  <circle cx="472" cy="140" r="3" fill="#2a1a10"/>
+  <circle cx="488" cy="140" r="3" fill="#2a1a10"/>
+  <path d="M470 158 Q480 152 490 158" stroke="#2a1a10" stroke-width="2" fill="none"/>
+  <!-- selection ring -->
+  <circle cx="320" cy="150" r="56" stroke="#e8c078" stroke-width="3" fill="none"/>
+  <text x="220" y="268" fill="#e8c078" font-family="ui-sans-serif, system-ui, sans-serif" font-size="18" font-weight="600">AvatarPicker</text>
+  <text x="220" y="292" fill="#a89070" font-family="ui-monospace, Menlo, monospace" font-size="12">preset · SVG · signup</text>
+</svg>

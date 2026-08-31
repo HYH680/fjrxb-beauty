@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>服务卡片改造预览 · AI 智能体超市</title>
+<style>
+  :root {
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    --shop: #e08a3c;
+    --wemedia: #c2410c;
+    --content: #e06b8a;
+    --office: #8b7cf6;
+    --voice: #2dd4bf;
+    --dev: #4ade80;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: #000;
+    color: #f4f4f5;
+    font-family: "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", "Microsoft YaHei", "Segoe UI", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .stage { position: relative; min-height: 100vh; overflow: hidden; }
+  .glow {
+    position: absolute; border-radius: 9999px; pointer-events: none;
+  }
+  .glow.a { width: 34rem; height: 34rem; top: -10rem; left: -8rem; background: rgba(124,92,255,.13); filter: blur(110px); }
+  .glow.b { width: 30rem; height: 30rem; top: 22%; right: -10rem; background: rgba(224,138,60,.09); filter: blur(110px); }
+  .glow.c { width: 28rem; height: 28rem; bottom: -8rem; left: 28%; background: rgba(45,212,191,.07); filter: blur(110px); }
+
+  .wrap { position: relative; z-index: 10; max-width: 1560px; margin: 0 auto; padding: 2.5rem 1rem 4rem; }
+  @media (min-width: 640px) { .wrap { padding: 3.5rem 1.5rem 5rem; } }
+
+  .eyebrow { font-size: 11px; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: rgba(167,139,250,.7); }
+  h1 { margin: .6rem 0 0; font-size: 2rem; font-weight: 600; letter-spacing: -.02em; }
+  @media (min-width: 640px) { h1 { font-size: 2.25rem; } }
+  .lead { margin: .75rem 0 0; max-width: 42rem; font-size: 14px; line-height: 1.6; color: #a1a1aa; }
+  .lead a { color: #a78bfa; }
+
+  .pane {
+    background: rgba(255,255,255,.035);
+    border: 1px solid rgba(255,255,255,.06);
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  }
+  .toolbar { margin-top: 2rem; border-radius: 1rem; padding: .75rem; }
+  @media (min-width: 640px) { .toolbar { padding: 1rem; } }
+  .chips { display: flex; gap: .5rem; overflow-x: auto; padding-bottom: .25rem; }
+  .chip {
+    flex: none; border: 0; cursor: pointer; border-radius: .375rem; padding: .375rem .75rem;
+    font-size: 14px; background: transparent; color: #71717a; font-family: inherit;
+    transition: color .22s var(--ease), background-color .22s var(--ease);
+  }
+  .chip:hover { background: rgba(255,255,255,.05); color: #d4d4d8; }
+  .chip[data-on="1"] { background: rgba(124,92,255,.2); color: #c4b5fd; }
+  .bar { margin-top: .75rem; border-top: 1px solid rgba(255,255,255,.06); padding-top: .75rem; display: flex; flex-direction: column; gap: .75rem; }
+  @media (min-width: 640px) { .bar { flex-direction: row; align-items: center; justify-content: space-between; } }
+  .bar label { display: flex; align-items: center; gap: .5rem; font-size: 13px; color: #a1a1aa; cursor: pointer; }
+  .search { position: relative; }
+  .search input {
+    width: 100%; border-radius: .5rem; border: 1px solid rgba(255,255,255,.1); background: rgba(0,0,0,.3);
+    color: #f4f4f5; font-size: 14px; padding: .625rem 1rem .625rem 2.5rem; outline: none; font-family: inherit;
+  }
+  @media (min-width: 640px) { .search input { width: 18rem; } }
+  .search svg { position: absolute; left: .75rem; top: 50%; transform: translateY(-50%); color: #71717a; }
+
+  .aisle-head {
+    display: flex; flex-wrap: wrap; align-items: center; gap: .5rem .75rem;
+    border-radius: .75rem; padding: .75rem 1rem; margin-bottom: 1rem;
+  }
+  .aisle-head .rail { width: 4px; height: 1.25rem; border-radius: 9999px; flex: none; }
+  .aisle-head h2 { margin: 0; font-size: 15px; font-weight: 600; letter-spacing: -.01em; }
+  .aisle-head p { margin: 0; min-width: 0; font-size: 12.5px; line-height: 1.4; color: #71717a; }
+  .aisle-head .n {
+    margin-left: auto; flex: none; border-radius: 9999px; border: 1px solid rgba(255,255,255,.1);
+    background: rgba(255,255,255,.04); padding: 0 .5rem; font-size: 11px; color: #a1a1aa; font-variant-numeric: tabular-nums;
+  }
+
+  .grid {
+    display: grid; gap: 1rem; grid-template-columns: 1fr; grid-auto-rows: 1fr;
+  }
+  @media (min-width: 640px) { .grid { gap: 1.25rem; grid-template-columns: repeat(2, minmax(0,1fr)); } }
+  @media (min-width: 1024px) { .grid { grid-template-columns: repeat(3, minmax(0,1fr)); } }
+  @media (min-width: 1536px) { .grid { grid-template-columns: repeat(4, minmax(0,1fr)); } }
+
+  .card {
+    position: relative; height: 100%; border-radius: 1rem; padding: 1px;
+    background: linear-gradient(150deg, rgba(255,255,255,.16), rgba(255,255,255,.045) 46%, rgba(255,255,255,.11));
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,.07), 0 16px 36px rgba(0,0,0,.34);
+    transition: box-shadow .22s var(--ease), transform .22s var(--ease);
+  }
+  .card:hover { transform: translateY(-3px); }
+  .card__body {
+    position: relative; height: 100%; overflow: hidden; border-radius: 15px;
+    display: flex; flex-direction: column;
+    background: linear-gradient(168deg, rgba(32,28,25,.56) 0%, rgba(18,16,15,.48) 46%, rgba(11,10,9,.64) 100%);
+    backdrop-filter: blur(18px) saturate(135%); -webkit-backdrop-filter: blur(18px) saturate(135%);
+    transition: background .22s var(--ease);
+  }
+  .card:hover .card__body {
+    background: linear-gradient(168deg, rgba(40,35,31,.6) 0%, rgba(23,20,19,.52) 46%, rgba(14,13,12,.68) 100%);
+  }
+  .card__body > .sheen {
+    position: absolute; left: 1rem; right: 1rem; top: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,.3), transparent);
+  }
+  .grain {
+    position: absolute; inset: 0; pointer-events: none;
+    background-image: linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+    background-size: 22px 22px;
+    mask-image: radial-gradient(ellipse at 50% 0%, #000 12%, transparent 72%);
+    -webkit-mask-image: radial-gradient(ellipse at 50% 0%, #000 12%, transparent 72%);
+  }
+  .rail { position: absolute; top: 0; bottom: 0; left: 0; width: 3px; z-index: 30; }
+
+  .cover { position: relative; overflow: hidden; }
+  .cover__inner { transition: transform .6s ease-out; aspect-ratio: 16 / 9; }
+  .card:hover .cover__inner { transform: scale(1.045); }
+  .cover__fade { position: absolute; left: 0; right: 0; top: 0; height: 3.5rem; background: linear-gradient(to bottom, rgba(0,0,0,.55), transparent); }
+  .pill {
+    position: absolute; right: .625rem; top: .625rem; z-index: 20;
+    display: inline-flex; align-items: center; gap: .375rem; border-radius: 9999px;
+    border: 1px solid rgba(255,255,255,.1); background: rgba(0,0,0,.35);
+    padding: .25rem .625rem; font-size: 11px; font-weight: 500; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  }
+  .pill i { width: 6px; height: 6px; border-radius: 9999px; background: currentColor; }
+  .t-live { background: rgba(16,185,129,.15); color: #6ee7b7; }
+  .t-setup { background: rgba(14,165,233,.15); color: #7dd3fc; }
+  .t-play { background: rgba(245,158,11,.15); color: #fcd34d; }
+
+  .head { position: relative; z-index: 10; padding: .875rem 1rem .25rem 1.25rem; display: flex; flex-direction: column; gap: .5rem; }
+  .meta { display: flex; flex-wrap: wrap; align-items: center; gap: .25rem .5rem; font-size: 11px; }
+  .meta .scene { display: inline-flex; align-items: center; gap: .375rem; font-weight: 500; color: #d4d4d8; }
+  .meta .scene i { width: 6px; height: 6px; border-radius: 9999px; flex: none; }
+  .meta .dot { color: #3f3f46; }
+  .meta .kind { color: #71717a; }
+  .title { margin: 0; font-size: 15px; font-weight: 600; line-height: 1.35; letter-spacing: -.01em; color: #fafafa; }
+  .card:hover .title { color: #c4b5fd; }
+
+  .brief { position: relative; z-index: 10; padding: .625rem 1rem 0 1.25rem; }
+  .brief__box {
+    position: relative; overflow: hidden; border-radius: .5rem;
+    border: 1px solid rgba(255,255,255,.06); background: rgba(255,255,255,.03);
+    padding: .625rem .75rem;
+  }
+  .brief__box > i { position: absolute; top: .5rem; bottom: .5rem; left: 0; width: 2px; border-radius: 9999px; }
+  .brief p { margin: 0; font-size: 12.5px; line-height: 1.5; color: #a1a1aa; }
+
+  .specs { position: relative; z-index: 10; list-style: none; margin: .75rem 0 0; padding: 0 1rem 0 1.25rem; }
+  .specs li { display: flex; align-items: flex-start; gap: .5rem; font-size: 12px; line-height: 1.4; color: #d4d4d8; margin-bottom: .375rem; }
+  .specs .tick {
+    margin-top: 3px; flex: none; width: 14px; height: 14px; border-radius: 9999px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .specs .more { padding-left: 22px; font-size: 11px; color: #52525b; }
+
+  .foot {
+    position: relative; z-index: 10; margin-top: auto;
+    border-top: 1px solid rgba(255,255,255,.07); background: rgba(0,0,0,.25);
+    padding: .75rem 1rem .75rem 1.25rem;
+  }
+  .foot__row { display: flex; align-items: center; justify-content: space-between; gap: .75rem; }
+  .price { margin: 0; font-size: 17px; font-weight: 600; letter-spacing: -.01em; color: #fafafa; white-space: nowrap; }
+  .price span { font-variant-numeric: tabular-nums; }
+  .price small { margin-left: .25rem; font-size: 11px; font-weight: 400; color: #71717a; }
+  .acts { display: flex; flex: none; align-items: center; gap: .625rem; }
+  .acts a { font-size: 12px; color: #a78bfa; text-decoration: none; white-space: nowrap; }
+  .acts a:hover { color: #c4b5fd; text-decoration: underline; }
+  .btn {
+    border: 0; cursor: pointer; border-radius: .5rem; padding: .375rem .75rem;
+    font-size: 12px; font-weight: 500; background: #7c5cff; color: #fff; font-family: inherit;
+  }
+  .btn:hover { background: #8b6dff; }
+
+  .viewer { margin-top: 2.5rem; }
+  .viewer__label { font-size: 13px; color: #a1a1aa; margin-bottom: .75rem; }
+  .frame { border: 1px solid rgba(255,255,255,.08); border-radius: 1rem; overflow: hidden; background: rgba(0,0,0,.4); }
+  .frame iframe { display: block; width: 100%; height: 780px; border: 0; }
+  .note { margin-top: 1rem; font-size: 12px; line-height: 1.7; color: #71717a; }
+  .note b { color: #a1a1aa; font-weight: 500; }
+  code { background: rgba(255,255,255,.06); padding: .1rem .35rem; border-radius: .25rem; font-size: 11.5px; color: #d4d4d8; }
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="glow a"></div><div class="glow b"></div><div class="glow c"></div>
+
+  <div class="wrap">
+    <p class="eyebrow">服务</p>
+    <h1>货架</h1>
+    <p class="lead">
+      先按"我在干嘛"找：开店、出图、办公、配音、研发。拿不准就 <a href="#">先问导购</a>。
+    </p>
+
+    <div class="pane toolbar">
+      <div class="chips">
+        <button class="chip" data-on="1">全部过道</button>
+        <button class="chip">开店与客服</button>
+        <button class="chip">自媒体</button>
+        <button class="chip">出图与内容</button>
+        <button class="chip">办公与文档</button>
+        <button class="chip">语音与短视频</button>
+        <button class="chip">研发与知识库</button>
+      </div>
+      <div class="bar">
+        <label><input type="checkbox" /> 只看在线可用</label>
+        <div class="search">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <input placeholder="搜索客服、网店、合同、出图…" />
+        </div>
+      </div>
+    </div>
+
+    <p style="margin:1.25rem 0 0;font-size:13px;font-variant-numeric:tabular-nums;color:#71717a;">6 项</p>
+
+    <div style="margin-top:1.25rem;">
+      <div class="pane aisle-head">
+        <span class="rail" style="background:var(--dev)"></span>
+        <h2>研发与知识库</h2>
+        <p>Agent、检索、研发提效</p>
+        <span class="n">2</span>
+      </div>
+      <div class="grid" id="g1"></div>
+
+      <div class="pane aisle-head" style="margin-top:2.5rem;">
+        <span class="rail" style="background:var(--content)"></span>
+        <h2>出图与内容</h2>
+        <p>海报、商品图、文案作图</p>
+        <span class="n">2</span>
+      </div>
+      <div class="grid" id="g2"></div>
+
+      <div class="pane aisle-head" style="margin-top:2.5rem;">
+        <span class="rail" style="background:var(--voice)"></span>
+        <h2>语音与短视频</h2>
+        <p>配音、克隆、转写、成片</p>
+        <span class="n">2</span>
+      </div>
+      <div class="grid" id="g3"></div>
+    </div>
+
+    <div class="viewer">
+      <p class="viewer__label">把浏览器窗口拖窄即可看到列数自动切换：≥1536px 四列 → ≥1024px 三列 → ≥640px 两列 → 手机单列</p>
+      <p class="note">
+        <b>页面位置</b>：<code>/products</code>（登录后顶栏「服务」进入）<br />
+        <b>改动文件</b>：<code>ShelfCard.tsx</code>、<code>ShelfGlowCard.tsx</code>、<code>ShelfAisleGrid.tsx</code>、<code>products/page.tsx</code>、<code>globals.css</code><br />
+        <b>卡片分块</b>：① 封面（悬停放大 + 状态胶囊）② 头部（场景色点 · 类型 · 标题）③ 简介（玻璃内嵌块）④ 能力清单（+N）⑤ 底部（价格 + 操作）
+      </p>
+    </div>
+  </div>
+</div>
+
+<script>
+  var TONE = {
+    shop: "#e08a3c", "we-media": "#c2410c", content: "#e06b8a",
+    office: "#8b7cf6", "voice-video": "#2dd4bf", dev: "#4ade80"
+  };
+  var LABEL = {
+    shop: "开店与客服", "we-media": "自媒体", content: "出图与内容",
+    office: "办公与文档", "voice-video": "语音与短视频", dev: "研发与知识库"
+  };
+  var DATA = [
+    { g:"g1", scene:"dev", mark:TONE.dev, name:"千问接入服务",
+      desc:"把通义千问接到客服、内部问答和内容整理里。本站已接通。",
+      feats:["场景诊断","接入辅导","月度复盘","问题响应"], price:198, unit:"每月", kind:"模型通道",
+      st:"live", stText:"在线可用", cover:["#041411","#0d3b32","#34d399","#22d3ee"] },
+    { g:"g1", scene:"dev", mark:TONE.dev, name:"GPT-5.6 Sol 接入服务",
+      desc:"把 OpenAI 旗舰模型接到客服、复杂推理和代码助手里。",
+      feats:["场景诊断","协助开通官方账号","接入辅导","月度复盘"], price:298, unit:"每月", kind:"模型通道",
+      st:"setup", stText:"待配置密钥", cover:["#07101f","#132447","#3b82f6","#22d3ee"] },
+
+    { g:"g2", scene:"content", mark:TONE.content, name:"即梦出图服务",
+      desc:"火山引擎即梦 4.0 文生图，偏国内创意与电商氛围。",
+      feats:["文生图","提示词打磨","比例尺寸","风格规范"], price:188, unit:"每月", kind:"场景服务",
+      st:"live", stText:"在线可用", cover:["#1a0b18","#3b1233","#f472b6","#fb923c"] },
+    { g:"g2", scene:"content", mark:TONE.content, name:"Midjourney 创意服务",
+      desc:"概念设计：工作台已能发 imagine。Midjourney 没有官方 API，本机还要跑 midjourney-proxy。",
+      feats:["自建 proxy 出图","风格方向","提示方法","素材归档"], price:198, unit:"每月", kind:"场景服务",
+      st:"setup", stText:"待启动代理", cover:["#1a0f14","#4a1838","#f472b6","#fb923c"] },
+
+    { g:"g3", scene:"voice-video", mark:TONE.voice, name:"会议转录服务",
+      desc:"上传会议录音，转成文字并整理成纪要草稿。",
+      feats:["音频转写","纪要模板","待办提取","归档建议"], price:99, unit:"每月", kind:"场景服务",
+      st:"live", stText:"在线可用", cover:["#12081d","#2a1450","#a78bfa","#f9a8d4"] },
+    { g:"g3", scene:"voice-video", mark:TONE.voice, name:"声音与配音服务",
+      desc:"选声、口吻规范与内容节奏的接入陪跑。",
+      feats:["选声","口吻规范","内容节奏","月度调整"], price:168, unit:"每月", kind:"场景服务",
+      st:"play", stText:"方案陪跑", cover:["#12081d","#2a1450","#a78bfa","#c4b5fd"] }
+  ];
+
+  function coverSVG(c) {
+    return '<svg viewBox="0 0 640 360" style="width:100%;height:100%;display:block">' +
+      '<defs><linearGradient id="bg' + c[0] + '" x1="0" y1="0" x2="1" y2="1">' +
+      '<stop offset="0%" stop-color="' + c[0] + '"/><stop offset="50%" stop-color="#07090e"/>' +
+      '<stop offset="100%" stop-color="' + c[1] + '"/></linearGradient></defs>' +
+      '<rect width="640" height="360" fill="url(#bg' + c[0] + ')"/>' +
+      '<circle cx="490" cy="40" r="150" fill="' + c[3] + '" opacity=".14"/>' +
+      '<rect x="90" y="60" width="420" height="240" rx="14" fill="' + c[2] + '" opacity=".9"/>' +
+      '<rect x="90" y="60" width="420" height="28" rx="14" fill="#000" opacity=".22"/>' +
+      '<circle cx="110" cy="74" r="4" fill="' + c[3] + '"/><circle cx="126" cy="74" r="4" fill="#fff" opacity=".35"/>' +
+      '<rect x="112" y="106" width="210" height="36" rx="10" fill="#fff" opacity=".14"/>' +
+      '<rect x="280" y="154" width="200" height="44" rx="10" fill="' + c[3] + '" opacity=".85"/>' +
+      '<rect x="112" y="212" width="260" height="36" rx="10" fill="#fff" opacity=".1"/>' +
+      '<rect x="112" y="262" width="90" height="24" rx="6" fill="' + c[3] + '" opacity=".7"/>' +
+      '</svg>';
+  }
+
+  function mix(hex, p) { return hex; }
+
+  function cardHTML(p) {
+    var shown = p.feats.slice(0, 3);
+    var rest = p.feats.length - shown.length;
+    var tick = 'background:color-mix(in srgb,' + p.mark + ' 22%, transparent);color:' + p.mark;
+    var html = '<article class="card">';
+    html += '<div class="card__body">';
+    html += '<span class="sheen"></span><span class="grain"></span>';
+    html += '<span class="rail" style="background:linear-gradient(180deg,' + p.mark + ' 0%,' + p.mark + ' 55%,transparent 100%)"></span>';
+
+    html += '<div class="cover"><div class="cover__inner">' + coverSVG(p.cover) + '</div>';
+    html += '<div class="cover__fade"></div>';
+    var cls = p.st === "live" ? "t-live" : (p.st === "setup" ? "t-setup" : "t-play");
+    html += '<span class="pill ' + cls + '"><i></i>' + p.stText + '</span></div>';
+
+    html += '<div class="head"><div class="meta">';
+    html += '<span class="scene"><i style="background:' + p.mark + '"></i>' + LABEL[p.scene] + '</span>';
+    html += '<span class="dot">·</span><span class="kind">' + p.kind + '</span></div>';
+    html += '<h3 class="title">' + p.name + '</h3></div>';
+
+    html += '<div class="brief"><div class="brief__box"><i style="background:' + p.mark + ';opacity:.55"></i>';
+    html += '<p>' + p.desc + '</p></div></div>';
+
+    html += '<ul class="specs">';
+    shown.forEach(function (f) {
+      html += '<li><span class="tick" style="' + tick + '">' +
+        '<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg>' +
+        '</span><span>' + f + '</span></li>';
+    });
+    if (rest > 0) html += '<li class="more">+' + rest + '</li>';
+    html += '</ul>';
+
+    html += '<div class="foot"><div class="foot__row">';
+    html += '<p class="price"><span>¥' + p.price.toLocaleString("zh-CN") + '</span><small>/ ' + p.unit + '</small></p>';
+    html += '<div class="acts"><a href="#">去工作台</a><button class="btn">加入购物车</button></div>';
+    html += '</div></div>';
+
+    html += '</div></article>';
+    return html;
+  }
+
+  ["g1","g2","g3"].forEach(function (id) {
+    var host = document.getElementById(id);
+    host.innerHTML = DATA.filter(function (d) { return d.g === id; }).map(cardHTML).join("");
+  });
+
+  var chips = document.querySelectorAll(".chip");
+  Array.prototype.forEach.call(chips, function (c) {
+    c.addEventListener("click", function () {
+      Array.prototype.forEach.call(chips, function (x) { x.setAttribute("data-on", "0"); });
+      c.setAttribute("data-on", "1");
+    });
+  });
+</script>
+</body>
+</html>

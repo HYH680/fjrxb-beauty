@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="360" viewBox="0 0 640 360" fill="none">
+  <rect width="640" height="360" fill="#0a0c10"/>
+  <defs>
+    <linearGradient id="bg" x1="40" y1="20" x2="600" y2="340" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#14201c"/>
+      <stop offset="1" stop-color="#0c1210"/>
+    </linearGradient>
+  </defs>
+  <rect x="44" y="36" width="552" height="288" rx="18" fill="url(#bg)" stroke="#4ade80" stroke-opacity="0.35"/>
+  <!-- dropzone -->
+  <rect x="100" y="90" width="260" height="180" rx="16" fill="#0f1a16" stroke="#4ade80" stroke-width="2" stroke-dasharray="10 8"/>
+  <path d="M230 140 V200" stroke="#4ade80" stroke-width="4" stroke-linecap="round"/>
+  <path d="M205 165 L230 138 L255 165" stroke="#4ade80" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="168" y="232" fill="#86efac" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14">UploadDropzone</text>
+  <!-- pipeline chips -->
+  <rect x="400" y="110" width="160" height="40" rx="10" fill="#122018" stroke="#22c55e" stroke-opacity="0.5"/>
+  <text x="420" y="135" fill="#86efac" font-family="ui-monospace, Menlo, monospace" font-size="13">fileRouter</text>
+  <rect x="400" y="168" width="160" height="40" rx="10" fill="#122018" stroke="#22c55e" stroke-opacity="0.5"/>
+  <text x="420" y="193" fill="#86efac" font-family="ui-monospace, Menlo, monospace" font-size="13">imageUploader</text>
+  <rect x="400" y="226" width="160" height="40" rx="10" fill="#122018" stroke="#22c55e" stroke-opacity="0.5"/>
+  <text x="420" y="251" fill="#86efac" font-family="ui-monospace, Menlo, monospace" font-size="13">cdn url</text>
+  <text x="100" y="300" fill="#64748b" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12">Next-friendly · type-safe uploads</text>
+</svg>

@@ -1,0 +1,15 @@
+{
+  "allOk": true,
+  "ttsOk": true,
+  "cloneVoiceId": "ShopDemovin2d0",
+  "viaMode": "minimax-clone",
+  "viaNotice": "已用 MiniMax（speech-2.8-hd）登记克隆音色并完成试听。",
+  "missingKeys": [
+    "ELEVENLABS_API_KEY",
+    "OPENAI_API_KEY",
+    "FISH_API_KEY",
+    "CARTESIA_API_KEY",
+    "INWORLD_API_KEY",
+    "DEEPGRAM_API_KEY"
+  ]
+}

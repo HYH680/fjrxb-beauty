@@ -1,0 +1,14 @@
+{
+  "ok": true,
+  "task": "露营帐篷 · 场景图 4:5",
+  "aspect": "4:5",
+  "tier": "1k",
+  "size": "768*1152",
+  "provider": "dashscope-wanx",
+  "model": "wanx-v1",
+  "usedRef": false,
+  "hasB64": true,
+  "hasUrl": true,
+  "latencyMs": 26958,
+  "url": "https://dashscope-a717.oss-cn-beijing.aliyuncs.com/1d/3e/20260816/c70535fc/0fb47e54-20c9-472f-9f16-c6c4f4028c94-1.png?Ex"
+}

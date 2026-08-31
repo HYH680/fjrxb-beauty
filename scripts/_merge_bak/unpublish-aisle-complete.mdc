@@ -1,0 +1,24 @@
+---
+description: 下架过道时必须连服务卡片与相关露出一并下架，禁止只删分区留卡
+alwaysApply: true
+---
+
+# 下架过道 = 卡片与相关露出一并下架
+
+删过道、下架一类服务时，**禁止**只改货架分区（`SHELF_SCENES` / `SCENE_*`）而留下仍 `published` 的卡片。
+
+## 必须同时做完
+
+1. **卡片**：`src/data/products.ts` 里该过道下每个 SKU 设 `published: false`（honesty/`syncCatalogHonesty` 会同步 DB）。
+2. **过道**：从 `SHELF_SCENES`、`SceneId`、`SCENE_BY_CATEGORY`（及 i18n 的 `SCENE_LABEL_KEYS` / `scene.*` 文案若在用）去掉该 scene；勿再映射到已删过道。
+3. **露出**：导购推荐、`service-briefs` / `TASK_BY_PRODUCT` / 封面筛选等不再把已下架 SKU 当在售推荐（可保留数据与旧开通入口，但货架与公开目录不可见）。
+4. **验收**：`/api/catalog` 不含这些 id；货架筛选与过道标题都不出现该过道名。
+
+## 反例 / 正例
+
+```text
+❌ 只删「模型接入」过道，GPT/千问等卡仍 published
+✅ 过道删除 + 全部 llm 接入卡 published: false，目录 llm 列表为空
+```
+
+若某张卡只是场景变体、仍要卖：移到其它在售过道并改 `category`，**不要**留在已删过道的映射里继续上架。
