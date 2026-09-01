@@ -1,9 +1,17 @@
 import type { NextConfig } from "next";
 import path from "node:path";
 
+const onVercel = Boolean(process.env.VERCEL);
+
 const nextConfig: NextConfig = {
-  output: "standalone",
-  allowedDevOrigins: ["127.0.0.1", "localhost", "fjrxb.beauty", "www.fjrxb.beauty"],
+  // HK standalone 部署需要；Vercel 用平台默认产物，勿开 standalone
+  ...(onVercel ? {} : { output: "standalone" as const }),
+  allowedDevOrigins: [
+    "127.0.0.1",
+    "localhost",
+    "fjrxb.beauty",
+    "www.fjrxb.beauty",
+  ],
   turbopack: {
     root: path.join(__dirname),
   },
