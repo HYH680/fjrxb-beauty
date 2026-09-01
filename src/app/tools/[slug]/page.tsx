@@ -33,8 +33,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export async function generateStaticParams() {
-  const products = await listCatalog();
-  return products.map((product) => ({ slug: product.id }));
+  try {
+    const products = await listCatalog();
+    return products.map((product) => ({ slug: product.id }));
+  } catch {
+    // Vercel preview may lack a durable DB during build.
+    return [];
+  }
 }
 
 export default async function ToolLandingPage({ params }: Props) {
